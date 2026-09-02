@@ -2535,6 +2535,69 @@
 
 
 
+  const initTestimonials = () => {
+    const sliders =
+      $$("[data-service-testimonials]");
+
+
+    if (
+      !sliders.length ||
+      typeof window.Swiper === "undefined"
+    ) {
+      return;
+    }
+
+
+    sliders.forEach((slider) => {
+      if (
+        slider.dataset.swiperReady ===
+        "true"
+      ) {
+        return;
+      }
+
+
+      slider.dataset.swiperReady =
+        "true";
+
+
+      new window.Swiper(
+        slider,
+        {
+          slidesPerView: 1,
+
+          spaceBetween: 24,
+
+          speed: 650,
+
+          loop: true,
+
+          grabCursor: true,
+
+          autoplay: state.reducedMotion
+            ? false
+            : {
+                delay: 5200,
+
+                disableOnInteraction: false
+              },
+
+          pagination: {
+            el:
+              $(".service-testimonials__pagination", slider),
+
+            clickable: true
+          }
+        }
+      );
+    });
+  };
+
+
+  
+
+
+
   const initEndReveal = () => {
     const section =
       $(".service-end");
@@ -2709,6 +2772,8 @@
     initResourceRows();
 
     initServiceBillboards();
+
+    initTestimonials();
 
 
     
