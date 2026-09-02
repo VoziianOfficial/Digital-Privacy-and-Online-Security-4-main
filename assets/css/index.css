@@ -1870,26 +1870,43 @@
 
   overflow: hidden;
 
-  background: #050607;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 3, 4, 0.9) 0%,
+      rgba(2, 3, 4, 0.7) 48%,
+      rgba(2, 3, 4, 0.88) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(119, 190, 255, 0.12),
+      rgba(2, 3, 4, 0.86)
+    ),
+    url("../images/contact-bg.png") center / cover no-repeat;
 
   border-top: 1px solid var(--home-line);
 }
 
 .home-contact__layout {
   display: grid;
-  grid-template-columns: minmax(300px, 0.7fr) minmax(500px, 1.3fr);
-  gap: 78px;
+  width: min(100%, 1108px);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 520px) minmax(0, 560px);
+  gap: 96px;
   align-items: start;
 }
 
 .home-contact__intro {
   position: sticky;
   top: calc(var(--header-height) + 34px);
+
+  text-align: center;
 }
 
 .home-contact__title {
   max-width: 620px;
 
+  margin-inline: auto;
   margin-bottom: 25px;
 
   font-size: clamp(3rem, 5vw, 5.4rem);
@@ -1897,6 +1914,8 @@
 
 .home-contact__intro p {
   max-width: 480px;
+
+  margin-inline: auto;
 }
 
 .home-contact__email {
@@ -1916,21 +1935,89 @@
 
 
 .home-contact__form {
-  padding: 36px;
+  width: min(100%, 560px);
+  padding: 28px;
 
   border: 1px solid var(--home-line);
+  border-radius: 8px;
 
-  background: #020304;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    ),
+    #020304;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.3);
 }
 
 .home-contact__form-title {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 
-  font-size: 2rem;
+  font-size: 1.65rem;
 }
 
 .home-contact__form-copy {
-  margin-bottom: 30px;
+  margin-bottom: 22px;
+}
+
+.home-contact__form .form-grid {
+  gap: 14px;
+}
+
+.home-contact__form .form-group {
+  gap: 6px;
+}
+
+.home-contact__form .form-label {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.home-contact__form .form-control {
+  min-height: 46px;
+
+  padding:
+    10px 12px;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.11
+    );
+  border-radius: 6px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+}
+
+.home-contact__form textarea.form-control {
+  min-height: 110px;
+
+  resize: vertical;
+}
+
+.home-contact__form .btn {
+  min-height: 46px;
+  padding:
+    12px 20px;
 }
 
 
@@ -2277,7 +2364,7 @@
 
   .home-contact__layout {
     grid-template-columns: 1fr;
-    gap: 46px;
+    gap: 32px;
   }
 
   .home-contact__intro {

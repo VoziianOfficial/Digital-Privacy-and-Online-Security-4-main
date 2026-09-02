@@ -246,6 +246,12 @@ $email =
     );
 
 
+$company =
+    cleanSingleLine(
+        postString('company')
+    );
+
+
 $subject =
     cleanSingleLine(
         postString('subject')
@@ -315,6 +321,17 @@ if (
 
 
 if (
+    textLength($company) > 120
+) {
+    respond(
+        false,
+        'Please enter a valid company name.',
+        422
+    );
+}
+
+
+if (
     textLength($subject) < 2 ||
     textLength($subject) > 160
 ) {
@@ -374,8 +391,20 @@ $subjectSafe = preg_replace(
 );
 
 
+$companySafe = preg_replace(
+    '/[\x00-\x1F\x7F]/u',
+    '',
+    $company
+);
+
+
 if ($nameSafe !== null) {
     $name = trim($nameSafe);
+}
+
+
+if ($companySafe !== null) {
+    $company = trim($companySafe);
 }
 
 
@@ -498,6 +527,9 @@ $mailBody =
 
     "Email:\n" .
     $email . "\n\n" .
+
+    "Company:\n" .
+    ($company !== '' ? $company : 'Not provided') . "\n\n" .
 
     "Subject:\n" .
     $subject . "\n\n" .
