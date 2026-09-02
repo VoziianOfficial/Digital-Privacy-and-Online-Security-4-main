@@ -1576,6 +1576,10 @@
       $(".service-flow__board", section);
 
 
+    const bg =
+      $(".service-flow__bg", section);
+
+
     const line =
       $(".service-flow__line", section);
 
@@ -1684,6 +1688,36 @@
           "-=0.52"
         );
       }
+    }
+
+
+    if (
+      board &&
+      bg
+    ) {
+      window.gsap.fromTo(
+        bg,
+        {
+          yPercent: -6
+        },
+        {
+          yPercent: 6,
+
+          ease: "none",
+
+          scrollTrigger: {
+            trigger: board,
+
+            start:
+              "top bottom",
+
+            end:
+              "bottom top",
+
+            scrub: 0.85
+          }
+        }
+      );
     }
   };
 
