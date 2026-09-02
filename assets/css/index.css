@@ -1532,25 +1532,76 @@
 
   background: var(--home-blue);
 
-  pointer-events: none;
+  cursor: default;
+  pointer-events: auto;
+
+  transition:
+    background-color 220ms var(--ease-main),
+    box-shadow 220ms var(--ease-main),
+    transform 220ms var(--ease-main);
+}
+
+.privacy-scheme__connector::before {
+  content: "";
+
+  position: absolute;
+  inset: -14px -10px;
 }
 
 .privacy-scheme__connector::after {
-  content: "";
+  content: attr(data-label);
 
   position: absolute;
 
   top: 50%;
-  right: -4px;
+  left: 50%;
 
-  width: 7px;
-  height: 7px;
+  padding: 7px 10px;
 
-  border-radius: 50%;
+  border: 1px solid rgba(119, 190, 255, 0.42);
 
-  background: var(--home-blue);
+  background: rgba(5, 6, 7, 0.94);
 
-  transform: translateY(-50%);
+  color: #fff;
+
+  font-family: var(--font-accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  opacity: 0;
+  box-shadow: 0 0 22px rgba(119, 190, 255, 0.24);
+
+  transform:
+    translate(-50%, -50%)
+    translateY(-18px)
+    scale(0.92);
+
+  transition:
+    opacity 220ms var(--ease-main),
+    transform 220ms var(--ease-main);
+}
+
+.privacy-scheme__connector:hover,
+.privacy-scheme__connector:focus-visible {
+  background: #fff;
+
+  box-shadow:
+    0 0 0 1px rgba(119, 190, 255, 0.36),
+    0 0 24px rgba(119, 190, 255, 0.55);
+}
+
+.privacy-scheme__connector:hover::after,
+.privacy-scheme__connector:focus-visible::after {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    translateY(-25px)
+    scale(1);
 }
 
 .privacy-scheme__connector--a {
@@ -1572,6 +1623,26 @@
   left: 66%;
 
   width: 15%;
+}
+
+.privacy-scheme__connector--d {
+  top: 24%;
+  left: 56%;
+
+  width: 22%;
+
+  transform: rotate(18deg);
+  transform-origin: left center;
+}
+
+.privacy-scheme__connector--e {
+  top: 78%;
+  left: 55%;
+
+  width: 25%;
+
+  transform: rotate(-15deg);
+  transform-origin: left center;
 }
 
 
@@ -3179,6 +3250,11 @@
   }
 
   .service-hover-row__image {
+    transition: none !important;
+  }
+
+  .privacy-scheme__connector,
+  .privacy-scheme__connector::after {
     transition: none !important;
   }
 }
