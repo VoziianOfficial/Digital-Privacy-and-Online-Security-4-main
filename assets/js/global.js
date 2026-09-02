@@ -94,6 +94,54 @@
   };
 
 
+  const SESSION_LOADER_KEY =
+    "privora:loader-seen";
+
+  const SESSION_NAVIGATION_KEY =
+    "privora:internal-navigation";
+
+
+  const readSessionFlag = (
+    key
+  ) => {
+    try {
+      return (
+        window.sessionStorage.getItem(key) ===
+        "true"
+      );
+    } catch (_) {
+      return false;
+    }
+  };
+
+
+  const writeSessionFlag = (
+    key
+  ) => {
+    try {
+      window.sessionStorage.setItem(
+        key,
+        "true"
+      );
+    } catch (_) {
+      
+    }
+  };
+
+
+  const clearSessionFlag = (
+    key
+  ) => {
+    try {
+      window.sessionStorage.removeItem(
+        key
+      );
+    } catch (_) {
+      
+    }
+  };
+
+
   
 
 
@@ -2632,6 +2680,55 @@
     }
 
 
+    const skipLoader =
+      readSessionFlag(
+        SESSION_LOADER_KEY
+      ) ||
+      readSessionFlag(
+        SESSION_NAVIGATION_KEY
+      );
+
+
+    if (skipLoader) {
+      clearSessionFlag(
+        SESSION_NAVIGATION_KEY
+      );
+
+
+      loader.classList.add(
+        "is-hidden"
+      );
+
+
+      loader.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      document.body.classList.remove(
+        "is-loading"
+      );
+
+
+      unlockScroll("loader");
+
+
+      state.loaderHidden =
+        true;
+
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "privora:loader-hidden"
+        )
+      );
+
+
+      return;
+    }
+
+
     if (
       loader.classList.contains(
         "is-hidden"
@@ -2688,6 +2785,11 @@
 
       state.loaderHidden =
         true;
+
+
+      writeSessionFlag(
+        SESSION_LOADER_KEY
+      );
 
 
       loader.classList.add(
@@ -2849,6 +2951,11 @@
       !hasGSAP() ||
       state.reducedMotion
     ) {
+      writeSessionFlag(
+        SESSION_NAVIGATION_KEY
+      );
+
+
       window.location.href =
         destination;
 
@@ -2883,6 +2990,11 @@
           "power4.inOut",
 
         onComplete() {
+          writeSessionFlag(
+            SESSION_NAVIGATION_KEY
+          );
+
+
           window.location.href =
             destination;
         }
@@ -4142,12 +4254,6 @@
 
 
         clearScrollLocks();
-
-
-        window.setTimeout(
-          requestRefresh,
-          70
-        );
       }
     );
   };
