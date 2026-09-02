@@ -3366,7 +3366,7 @@
   
 
   .home-about {
-    padding: 68px 0;
+    padding: 34px 0;
   }
 
   .home-about__title {
@@ -3424,7 +3424,7 @@
   
 
   .home-services {
-    padding: 68px 0 74px;
+    padding: 34px 0 37px;
   }
 
   .home-services__title {
@@ -3472,7 +3472,7 @@
 
 
   .home-service-showcase {
-    padding: 68px 0 72px;
+    padding: 34px 0 36px;
   }
 
   .home-service-showcase__title {
@@ -3605,7 +3605,7 @@
   
 
   .home-scheme {
-    padding: 70px 0;
+    padding: 35px 0;
   }
 
   .home-scheme__head {
@@ -3649,7 +3649,7 @@
   
 
   .home-testimonials {
-    padding: 70px 0 74px;
+    padding: 35px 0 37px;
   }
 
   .home-testimonials__title {
@@ -3675,7 +3675,7 @@
   
 
   .home-principles {
-    padding: 70px 0 74px;
+    padding: 35px 0 37px;
   }
 
   .home-principles__title {
@@ -3694,9 +3694,9 @@
   }
 
   .principle-card__media {
-    min-height: 130px;
+    min-height: 65px;
 
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .principle-card__title {
@@ -3719,7 +3719,7 @@
   
 
   .home-faq {
-    padding: 70px 0 74px;
+    padding: 35px 0 37px;
   }
 
   .home-faq__title {
@@ -3734,7 +3734,7 @@
   
 
   .home-contact {
-    padding: 70px 0 74px;
+    padding: 35px 0 37px;
   }
 
   .home-contact__intro {
@@ -3809,7 +3809,7 @@
   }
 
   .principle-card__media {
-    min-height: 115px;
+    min-height: 58px;
   }
 }
 
@@ -4085,5 +4085,53 @@
 
   .home-parallax__zone {
     min-height: 150px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 900px) {
+
+  .principle-card__media {
+    height: 130px;
+    min-height: 130px;
+  }
+
+  .principle-card__media img {
+    display: block;
+
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 560px) {
+
+  .principle-card__media {
+    height: 65px;
+    min-height: 65px;
+
+    margin-bottom: 8px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 390px) {
+
+  .principle-card__media {
+    height: 58px;
+    min-height: 58px;
   }
 }

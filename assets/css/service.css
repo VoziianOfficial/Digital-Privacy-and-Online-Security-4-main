@@ -3229,17 +3229,17 @@
   .service-flow,
   .service-resources,
   .service-contact {
-    padding-top: 68px;
-    padding-bottom: 72px;
-  }
-
-  .service-faq {
     padding-top: 34px;
     padding-bottom: 36px;
   }
 
+  .service-faq {
+    padding-top: 17px;
+    padding-bottom: 18px;
+  }
+
   .service-testimonials {
-    padding: 54px 0 60px;
+    padding: 27px 0 30px;
   }
 
   .service-intro__heading,
@@ -3513,17 +3513,17 @@
   .service-flow,
   .service-resources,
   .service-contact {
-    padding-top: 58px;
-    padding-bottom: 62px;
-  }
-
-  .service-faq {
     padding-top: 29px;
     padding-bottom: 31px;
   }
 
+  .service-faq {
+    padding-top: 15px;
+    padding-bottom: 16px;
+  }
+
   .service-testimonials {
-    padding: 42px 0 48px;
+    padding: 21px 0 24px;
   }
 
   .service-testimonials__layout {
