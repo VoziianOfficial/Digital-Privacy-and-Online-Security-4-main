@@ -3746,6 +3746,11 @@
     gap: 14px;
   }
 
+  .service-flow__nodes
+  .service-flow-node:nth-child(n + 3) {
+    display: none;
+  }
+
   .service-flow-node {
     min-height: auto;
 

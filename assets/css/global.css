@@ -2663,21 +2663,39 @@ textarea.form-control {
   
 
   .cookie-consent {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
 
-    gap: 10px;
+    gap: 7px;
 
     padding:
-      13px;
+      8px 9px;
   }
 
   .cookie-consent__text {
-    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 0.66rem;
+    line-height: 1.25;
+    text-align: left;
   }
 
   .cookie-consent__actions {
-    justify-content: center;
+    justify-content: flex-end;
+
+    gap: 5px;
+  }
+
+  .cookie-consent .btn {
+    min-height: 30px;
+
+    padding:
+      0 8px;
+
+    font-size: 0.64rem;
+    white-space: nowrap;
   }
 
 
@@ -2741,7 +2759,7 @@ textarea.form-control {
 
   .cookie-consent.is-visible
   ~ .back-to-top {
-    bottom: 165px;
+    bottom: 70px;
   }
 }
 
@@ -2783,17 +2801,11 @@ textarea.form-control {
   }
 
   .cookie-consent__actions {
-    display: grid;
-
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0, 1fr)
-      );
+    display: flex;
   }
 
   .cookie-consent .btn {
-    width: 100%;
+    width: auto;
   }
 }
 

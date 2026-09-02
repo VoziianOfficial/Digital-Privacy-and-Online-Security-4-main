@@ -3393,12 +3393,31 @@
 
   .home-about__facts {
     grid-template-columns: 1fr;
+
+    justify-items: center;
+    text-align: center;
   }
 
   .home-about__fact + .home-about__fact {
     padding-left: 0;
 
     border-left: 0;
+  }
+
+  .home-about__fact {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
+
+    width: 100%;
+    max-width: 280px;
+
+    padding:
+      18px 0;
+  }
+
+  .home-about__fact-label {
+    max-width: 220px;
   }
 
 
@@ -3671,11 +3690,11 @@
 
   .home-principles__grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 22px;
   }
 
   .principle-card__media {
-    min-height: 400px;
+    min-height: 260px;
   }
 
   .principle-card__title,
@@ -3777,7 +3796,7 @@
   }
 
   .principle-card__media {
-    min-height: 350px;
+    min-height: 230px;
   }
 }
 
