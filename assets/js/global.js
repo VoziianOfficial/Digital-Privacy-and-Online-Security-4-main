@@ -64,11 +64,23 @@
       "(hover: hover) and (pointer: fine)"
     ).matches,
 
+    coarsePointer: window.matchMedia(
+      "(hover: none), (pointer: coarse)"
+    ).matches,
+
     lenis: null,
 
     lenisTickerConnected: false,
 
     resizeTimer: null,
+
+    refreshTimer: null,
+
+    refreshFrame: null,
+
+    refreshQueued: false,
+
+    refreshRunning: false,
 
     scrollLockedByMenu: false
   };
@@ -106,6 +118,11 @@
 
   const hasAOS = () =>
     typeof window.AOS !== "undefined";
+
+
+  const canUseLenis = () =>
+    state.finePointer &&
+    !state.coarsePointer;
 
 
   const safeDecode = (value) => {
@@ -1093,6 +1110,10 @@
         window.gsap.registerPlugin(
           window.ScrollTrigger
         );
+
+        window.ScrollTrigger.config({
+          ignoreMobileResize: true
+        });
       } catch (_) {
         
       }
@@ -1162,6 +1183,7 @@
   const initLenis = () => {
     if (
       state.reducedMotion ||
+      !canUseLenis() ||
       !hasLenis() ||
       state.lenis
     ) {
@@ -3382,6 +3404,15 @@
 
 
   function refreshLayout() {
+    state.refreshQueued =
+      false;
+
+    state.refreshFrame =
+      null;
+
+    state.refreshRunning =
+      true;
+
     if (
       state.lenis &&
       typeof state.lenis.resize ===
@@ -3389,6 +3420,21 @@
     ) {
       try {
         state.lenis.resize();
+      } catch (_) {
+        
+      }
+    }
+
+
+    if (
+      window.PrivoraHome &&
+      typeof window.PrivoraHome
+        .updateLayout ===
+        "function"
+    ) {
+      try {
+        window.PrivoraHome
+          .updateLayout();
       } catch (_) {
         
       }
@@ -3415,35 +3461,59 @@
     }
 
 
-    if (
-      window.PrivoraHome &&
-      typeof window.PrivoraHome
-        .refresh ===
-        "function"
-    ) {
-      try {
-        window.PrivoraHome
-          .refresh();
-      } catch (_) {
-        
-      }
-    }
-
-
-    if (
-      window.PrivoraService &&
-      typeof window.PrivoraService
-        .refresh ===
-        "function"
-    ) {
-      try {
-        window.PrivoraService
-          .refresh();
-      } catch (_) {
-        
-      }
-    }
+    state.refreshRunning =
+      false;
   }
+
+
+  const requestRefresh = (
+    delay = 80
+  ) => {
+    if (
+      state.refreshRunning ||
+      state.refreshFrame
+    ) {
+      state.refreshQueued =
+        true;
+
+      return;
+    }
+
+    if (
+      state.refreshTimer
+    ) {
+      window.clearTimeout(
+        state.refreshTimer
+      );
+    }
+
+
+    state.refreshQueued =
+      true;
+
+
+    state.refreshTimer =
+      window.setTimeout(
+        () => {
+          state.refreshTimer =
+            null;
+
+
+          if (
+            state.refreshFrame
+          ) {
+            return;
+          }
+
+
+          state.refreshFrame =
+            window.requestAnimationFrame(
+              refreshLayout
+            );
+        },
+        delay
+      );
+  };
 
 
   
@@ -3474,9 +3544,7 @@
         if (
           waiting <= 0
         ) {
-          window.requestAnimationFrame(
-            refreshLayout
-          );
+          requestRefresh();
         }
       };
 
@@ -3516,7 +3584,7 @@
 
         state.resizeTimer =
           window.setTimeout(
-            refreshLayout,
+            requestRefresh,
             180
           );
       },
@@ -3618,7 +3686,7 @@
 
 
         window.setTimeout(
-          refreshLayout,
+          requestRefresh,
           70
         );
       }
@@ -3634,9 +3702,7 @@
     window.addEventListener(
       "load",
       () => {
-        window.requestAnimationFrame(
-          refreshLayout
-        );
+        requestRefresh();
       },
       {
         once: true
@@ -3773,6 +3839,9 @@
     applyConfig,
 
     refresh:
+      requestRefresh,
+
+    refreshNow:
       refreshLayout,
 
     scrollTo:
@@ -3780,6 +3849,15 @@
 
     navigate:
       transitionToPage
+  };
+
+
+  window.PrivoraRefresh = {
+    request:
+      requestRefresh,
+
+    now:
+      refreshLayout
   };
 
 

@@ -75,9 +75,28 @@
       window.gsap.registerPlugin(
         window.ScrollTrigger
       );
+
+      window.ScrollTrigger.config({
+        ignoreMobileResize: true
+      });
     }
 
     return true;
+  };
+
+
+  const requestGlobalRefresh = (
+    delay
+  ) => {
+    if (
+      window.PrivoraRefresh &&
+      typeof window.PrivoraRefresh
+        .request ===
+        "function"
+    ) {
+      window.PrivoraRefresh
+        .request(delay);
+    }
   };
 
 
@@ -2326,7 +2345,7 @@
 
 
 
-  const refresh = () => {
+  const updateLayout = () => {
     state.swipers.forEach(
       (swiper) => {
         if (
@@ -2339,19 +2358,11 @@
         }
       }
     );
+  };
 
 
-    if (hasScrollTrigger()) {
-      window.requestAnimationFrame(
-        () => {
-          try {
-            window.ScrollTrigger.refresh();
-          } catch (_) {
-            
-          }
-        }
-      );
-    }
+  const refresh = () => {
+    requestGlobalRefresh();
   };
 
 
@@ -2412,7 +2423,9 @@
                 rebuildRibbons();
               }
 
-              refresh();
+              updateLayout();
+
+              requestGlobalRefresh();
             },
             220
           );
@@ -2421,46 +2434,6 @@
         passive: true
       }
     );
-  };
-
-
-  
-
-
-
-  const initImageLoadRefresh = () => {
-    const images =
-      $$(
-        ".home-page img"
-      );
-
-
-    images.forEach((image) => {
-      if (image.complete) return;
-
-
-      const done = () => {
-        refresh();
-      };
-
-
-      image.addEventListener(
-        "load",
-        done,
-        {
-          once: true
-        }
-      );
-
-
-      image.addEventListener(
-        "error",
-        done,
-        {
-          once: true
-        }
-      );
-    });
   };
 
 
@@ -2575,29 +2548,6 @@
 
     initResize();
 
-    initImageLoadRefresh();
-
-
-    window.addEventListener(
-      "load",
-      refresh,
-      {
-        once: true
-      }
-    );
-
-
-    window.addEventListener(
-      "pageshow",
-      (event) => {
-        if (event.persisted) {
-          window.setTimeout(
-            refresh,
-            60
-          );
-        }
-      }
-    );
   };
 
 
@@ -2609,6 +2559,8 @@
     init,
 
     refresh,
+
+    updateLayout,
 
     state,
 

@@ -80,6 +80,10 @@
         window.gsap.registerPlugin(
           window.ScrollTrigger
         );
+
+        window.ScrollTrigger.config({
+          ignoreMobileResize: true
+        });
       } catch (_) {
         
       }
@@ -87,6 +91,21 @@
 
 
     return true;
+  };
+
+
+  const requestGlobalRefresh = (
+    delay
+  ) => {
+    if (
+      window.PrivoraRefresh &&
+      typeof window.PrivoraRefresh
+        .request ===
+        "function"
+    ) {
+      window.PrivoraRefresh
+        .request(delay);
+    }
   };
 
 
@@ -987,86 +1006,11 @@
 
 
   const refresh = () => {
-    if (
-      !hasScrollTrigger()
-    ) {
-      return;
-    }
-
-
-    window.requestAnimationFrame(
-      () => {
-        try {
-          window.ScrollTrigger.refresh();
-        } catch (_) {
-          
-        }
-      }
-    );
+    requestGlobalRefresh();
   };
 
 
   
-
-
-
-  const initImageRefresh = () => {
-    $$(
-      ".legal-page img"
-    ).forEach((image) => {
-      if (image.complete) {
-        return;
-      }
-
-
-      image.addEventListener(
-        "load",
-        refresh,
-        {
-          once: true
-        }
-      );
-
-
-      image.addEventListener(
-        "error",
-        refresh,
-        {
-          once: true
-        }
-      );
-    });
-  };
-
-
-  
-
-
-
-  const initResize = () => {
-    window.addEventListener(
-      "resize",
-      () => {
-        window.clearTimeout(
-          state.resizeTimer
-        );
-
-
-        state.resizeTimer =
-          window.setTimeout(
-            refresh,
-            180
-          );
-      },
-      {
-        passive: true
-      }
-    );
-  };
-
-
-  
-
 
 
   const initMotion = () => {
@@ -1144,31 +1088,6 @@
 
 
 
-    initImageRefresh();
-
-    initResize();
-
-
-    window.addEventListener(
-      "load",
-      refresh,
-      {
-        once: true
-      }
-    );
-
-
-    window.addEventListener(
-      "pageshow",
-      (event) => {
-        if (event.persisted) {
-          window.setTimeout(
-            refresh,
-            60
-          );
-        }
-      }
-    );
   };
 
 
