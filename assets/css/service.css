@@ -1301,32 +1301,89 @@
 
 .service-diagram__connector {
   position: absolute;
-
   z-index: 7;
 
   height: 1px;
 
   background: var(--service-blue);
 
-  pointer-events: none;
+  cursor: default;
+  pointer-events: auto;
+  will-change: clip-path;
+
+  transition:
+    clip-path 720ms var(--ease-main),
+    background-color 220ms var(--ease-main),
+    box-shadow 220ms var(--ease-main);
 }
 
-.service-diagram__connector::after {
+.service-diagram__connector::before {
   content: "";
 
   position: absolute;
+  inset: -14px -10px;
+}
+
+.service-diagram__connector::after {
+  content: attr(data-label);
+
+  position: absolute;
+  z-index: 1;
 
   top: 50%;
-  right: -4px;
+  left: 50%;
 
-  width: 7px;
-  height: 7px;
+  padding: 7px 10px;
 
-  border-radius: 50%;
+  border:
+    1px solid rgba(119, 190, 255, 0.42);
 
-  background: var(--service-blue);
+  background:
+    rgba(5, 6, 7, 0.94);
 
-  transform: translateY(-50%);
+  color: #fff;
+
+  font-family: var(--font-accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+
+  opacity: 0;
+
+  box-shadow:
+    0 0 22px rgba(119, 190, 255, 0.24);
+
+  transform:
+    translate(-50%, -50%)
+    translateY(-18px)
+    scale(0.92);
+
+  transition:
+    opacity 220ms var(--ease-main),
+    transform 220ms var(--ease-main);
+}
+
+.service-diagram__connector:hover,
+.service-diagram__connector:focus-visible {
+  background: #fff;
+
+  box-shadow:
+    0 0 0 1px rgba(119, 190, 255, 0.36),
+    0 0 24px rgba(119, 190, 255, 0.55);
+}
+
+.service-diagram__connector:hover::after,
+.service-diagram__connector:focus-visible::after {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    translateY(-25px)
+    scale(1);
 }
 
 .service-diagram__connector--one {

@@ -1456,10 +1456,8 @@
       window.gsap.from(
         connectors,
         {
-          scaleX: 0,
-
-          transformOrigin:
-            "left center",
+          clipPath:
+            "inset(0 100% 0 0)",
 
           duration: 0.7,
 
