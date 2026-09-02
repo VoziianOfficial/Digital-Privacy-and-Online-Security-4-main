@@ -1,16 +1,4 @@
-
-
-
-
-
-
-
-
 window.SiteConfig = {
-
-  
-
-
 
   companyName: "Privora",
 
@@ -20,20 +8,9 @@ window.SiteConfig = {
 
   favicon: "assets/icons/favicon.svg",
 
-
-  
-
-
-
-
   email: "hello@privora-security.com",
 
   cookiePreferenceKey: "privora_cookie_preference_v1",
-
-
-  
-
-
 
   browserTitle: "{companyName} | Digital Privacy & Online Security",
 
