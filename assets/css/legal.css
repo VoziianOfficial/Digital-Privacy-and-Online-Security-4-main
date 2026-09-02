@@ -898,6 +898,45 @@
 
 @media (max-width: 900px) {
 
+  .legal-hero__main,
+  .legal-sidebar,
+  .legal-section__head,
+  .legal-contact__content {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .legal-hero__title,
+  .legal-sidebar__title,
+  .legal-section__title,
+  .legal-contact__title {
+    width: 100%;
+    max-width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    overflow-wrap: break-word;
+
+    text-align: center;
+    letter-spacing: 0;
+  }
+
+  .legal-hero__label,
+  .legal-hero__updated {
+    justify-content: center;
+  }
+
+  .legal-hero__meta,
+  .legal-hero__meta-text,
+  .legal-contact__text {
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: center;
+  }
+
   .legal-hero__grid-line:nth-child(2) {
     left: 33.333%;
   }

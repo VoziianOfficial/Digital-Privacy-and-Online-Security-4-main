@@ -2799,6 +2799,49 @@
 
 @media (max-width: 900px) {
 
+  .home-about__heading,
+  .home-services__intro,
+  .home-service-showcase__head,
+  .home-scheme__head,
+  .home-principles__head,
+  .home-contact__intro {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .home-about__title,
+  .home-services__title,
+  .home-service-showcase__title,
+  .home-scheme__title,
+  .home-testimonials__title,
+  .home-principles__title,
+  .home-faq__title,
+  .home-contact__title {
+    width: 100%;
+    max-width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    overflow-wrap: break-word;
+
+    text-align: center;
+    white-space: normal;
+    letter-spacing: 0;
+  }
+
+  .home-services__text,
+  .home-service-showcase__copy,
+  .home-scheme__copy,
+  .home-principles__copy,
+  .home-contact__intro p {
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: center;
+  }
+
   .home-hero {
     min-height: 520px;
   }

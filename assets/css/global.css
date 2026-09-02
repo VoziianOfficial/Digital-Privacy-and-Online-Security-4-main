@@ -1858,11 +1858,13 @@ textarea.form-control {
 
   gap: 15px;
 
-  width:
+  width: fit-content;
+
+  max-width:
     min(
-      560px,
+      640px,
       calc(
-        100% - 36px
+        100vw - 36px
       )
     );
 
@@ -2726,6 +2728,28 @@ textarea.form-control {
   .cookie-consent.is-visible
   ~ .back-to-top {
     bottom: 165px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 900px) {
+
+  h1,
+  h2 {
+    width: 100%;
+    max-width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    overflow-wrap: break-word;
+
+    text-align: center;
+    letter-spacing: 0;
   }
 }
 

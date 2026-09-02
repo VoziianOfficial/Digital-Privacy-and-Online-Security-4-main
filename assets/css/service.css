@@ -2876,6 +2876,54 @@
 
   
 
+  .service-hero__intro,
+  .service-intro__heading,
+  .service-focus__head,
+  .service-scheme__head,
+  .service-flow__head,
+  .service-resources__head,
+  .service-faq__head,
+  .service-contact__intro {
+    text-align: center;
+  }
+
+  .service-hero__title,
+  .service-intro__title,
+  .service-overview__title,
+  .service-focus__title,
+  .service-scheme__title,
+  .service-flow__title,
+  .service-resources__title,
+  .service-parallax__title,
+  .service-faq__title,
+  .service-contact__title,
+  .service-end__title,
+  .service-testimonials__title {
+    width: 100%;
+    max-width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    overflow-wrap: break-word;
+
+    text-align: center;
+    white-space: normal;
+    letter-spacing: 0;
+  }
+
+  .service-intro__heading p,
+  .service-focus__copy,
+  .service-scheme__copy,
+  .service-resources__copy,
+  .service-faq__copy,
+  .service-contact__intro p {
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: center;
+  }
+
   .service-hero {
     min-height: 530px;
   }
@@ -3233,8 +3281,6 @@
   .service-flow__title {
     font-size:
       clamp(1.85rem, 5.2vw, 3rem);
-
-    white-space: nowrap;
   }
 
   .service-focus-card {
@@ -3508,8 +3554,6 @@
   .service-flow__title {
     font-size:
       clamp(1.3rem, 6.7vw, 2.2rem);
-
-    white-space: nowrap;
   }
 
 
