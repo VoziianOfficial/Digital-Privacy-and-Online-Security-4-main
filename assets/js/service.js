@@ -1,30 +1,30 @@
-/* =========================================================
-   PRIVORA — SERVICE JAVASCRIPT
-   Digital Privacy & Online Security
 
-   Used by:
-   - services/privacy-protection.html
-   - services/online-security.html
 
-   Requires:
-   - GSAP
-   - ScrollTrigger
-   - global.js
 
-   IMPORTANT
-   ---------
-   - global.js handles common UI
-   - service.js handles service-page motion only
-   - do not animate the same element with AOS + GSAP
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 (() => {
   "use strict";
 
 
-  /* =======================================================
-     01. STATE
-     ======================================================= */
+  
+
+
 
   const state = {
     initialized: false,
@@ -43,9 +43,9 @@
   };
 
 
-  /* =======================================================
-     02. HELPERS
-     ======================================================= */
+  
+
+
 
   const $ = (
     selector,
@@ -81,7 +81,7 @@
           window.ScrollTrigger
         );
       } catch (_) {
-        /* no-op */
+        
       }
     }
 
@@ -119,9 +119,9 @@
   };
 
 
-  /* =======================================================
-     03. HERO FALLBACK
-     ======================================================= */
+  
+
+
 
   const showHeroImmediately = () => {
     $$(
@@ -147,9 +147,9 @@
   };
 
 
-  /* =======================================================
-     04. HERO INTRO
-     ======================================================= */
+  
+
+
 
   const playHeroIntro = () => {
     if (state.heroPlayed) {
@@ -228,7 +228,7 @@
       });
 
 
-    /* construction lines */
+    
 
     if (gridLines.length) {
       timeline.fromTo(
@@ -251,7 +251,7 @@
     }
 
 
-    /* title container */
+    
 
     if (intro) {
       timeline.set(
@@ -264,7 +264,7 @@
     }
 
 
-    /* title text */
+    
 
     if (titleLines.length) {
       timeline.fromTo(
@@ -284,7 +284,7 @@
     }
 
 
-    /* right copy */
+    
 
     if (copy) {
       timeline.fromTo(
@@ -306,7 +306,7 @@
     }
 
 
-    /* main picture */
+    
 
     if (media) {
       timeline.fromTo(
@@ -332,7 +332,7 @@
     }
 
 
-    /* small picture */
+    
 
     if (smallMedia) {
       timeline.fromTo(
@@ -362,7 +362,7 @@
     }
 
 
-    /* logo object */
+    
 
     if (symbol) {
       timeline.fromTo(
@@ -388,7 +388,7 @@
     }
 
 
-    /* status pill */
+    
 
     if (status) {
       timeline.fromTo(
@@ -410,7 +410,7 @@
     }
 
 
-    /* giant bottom word */
+    
 
     if (word) {
       timeline.fromTo(
@@ -433,9 +433,9 @@
   };
 
 
-  /* =======================================================
-     05. WAIT FOR GLOBAL LOADER
-     ======================================================= */
+  
+
+
 
   const waitForLoader = () => {
     const loader =
@@ -495,9 +495,9 @@
     );
 
 
-    /*
-     Safety fallback.
-    */
+    
+
+
 
     window.setTimeout(
       () => {
@@ -512,9 +512,9 @@
   };
 
 
-  /* =======================================================
-     06. HERO SYMBOL MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroSymbolMotion = () => {
     if (
@@ -574,9 +574,9 @@
   };
 
 
-  /* =======================================================
-     07. HERO POINTER MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroPointerMotion = () => {
     if (
@@ -741,9 +741,9 @@
   };
 
 
-  /* =======================================================
-     08. HERO SCROLL MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroScrollMotion = () => {
     if (
@@ -871,9 +871,9 @@
   };
 
 
-  /* =======================================================
-     09. SERVICE INTRO
-     ======================================================= */
+  
+
+
 
   const initIntroMotion = () => {
     const section =
@@ -1007,9 +1007,9 @@
     }
 
 
-    /*
-     main image subtle parallax
-    */
+    
+
+
 
     if (main) {
       const image =
@@ -1045,9 +1045,9 @@
   };
 
 
-  /* =======================================================
-     10. OVERVIEW ROWS
-     ======================================================= */
+  
+
+
 
   const initOverview = () => {
     const section =
@@ -1071,9 +1071,9 @@
     }
 
 
-    /*
-     Hover / touch active state.
-    */
+    
+
+
 
     const activate = (
       selected
@@ -1116,9 +1116,9 @@
     activate(rows[0]);
 
 
-    /*
-     Entrance animation.
-    */
+    
+
+
 
     if (
       state.reducedMotion ||
@@ -1211,9 +1211,9 @@
   };
 
 
-  /* =======================================================
-     11. FOCUS CARDS
-     ======================================================= */
+  
+
+
 
   const initFocusCards = () => {
     const section =
@@ -1319,9 +1319,9 @@
   };
 
 
-  /* =======================================================
-     12. SERVICE DIAGRAM
-     ======================================================= */
+  
+
+
 
   const initDiagram = () => {
     const section =
@@ -1447,9 +1447,9 @@
   };
 
 
-  /* =======================================================
-     13. FLOW NODE INTERACTION
-     ======================================================= */
+  
+
+
 
   const initFlowInteraction = () => {
     const board =
@@ -1515,9 +1515,9 @@
   };
 
 
-  /* =======================================================
-     14. FLOW SCROLL ANIMATION
-     ======================================================= */
+  
+
+
 
   const initFlowReveal = () => {
     const section =
@@ -1654,9 +1654,9 @@
   };
 
 
-  /* =======================================================
-     15. PARALLAX
-     ======================================================= */
+  
+
+
 
   const initParallax = () => {
     const section =
@@ -1764,15 +1764,15 @@
   };
 
 
-  /* =======================================================
-     16. RESOURCE ROWS
-     -------------------------------------------------------
-     Reference-like interaction:
+  
 
-     hover row
-     -> image appears
-     -> image follows cursor
-     ======================================================= */
+
+
+
+
+
+
+
 
   const initResourceRows = () => {
     const rows =
@@ -2034,9 +2034,9 @@
   };
 
 
-  /* =======================================================
-     17. RESOURCE ROW SCROLL REVEAL
-     ======================================================= */
+  
+
+
 
   const initResourcesReveal = () => {
     const section =
@@ -2133,11 +2133,11 @@
   };
 
 
-  /* =======================================================
-     18. FAQ REVEAL
-     -------------------------------------------------------
-     Accordion interaction comes from global.js
-     ======================================================= */
+  
+
+
+
+
 
   const initFAQReveal = () => {
     const section =
@@ -2226,9 +2226,9 @@
   };
 
 
-  /* =======================================================
-     19. CONTACT REVEAL
-     ======================================================= */
+  
+
+
 
   const initContactReveal = () => {
     const section =
@@ -2316,9 +2316,9 @@
   };
 
 
-  /* =======================================================
-     20. END SECTION
-     ======================================================= */
+  
+
+
 
   const initEndReveal = () => {
     const section =
@@ -2408,9 +2408,9 @@
   };
 
 
-  /* =======================================================
-     21. REFRESH
-     ======================================================= */
+  
+
+
 
   const refresh = () => {
     if (
@@ -2421,7 +2421,7 @@
           try {
             window.ScrollTrigger.refresh();
           } catch (_) {
-            /* no-op */
+            
           }
         }
       );
@@ -2429,9 +2429,9 @@
   };
 
 
-  /* =======================================================
-     22. IMAGE LOAD REFRESH
-     ======================================================= */
+  
+
+
 
   const initImageRefresh = () => {
     $$(
@@ -2462,9 +2462,9 @@
   };
 
 
-  /* =======================================================
-     23. RESIZE
-     ======================================================= */
+  
+
+
 
   const initResize = () => {
     window.addEventListener(
@@ -2488,9 +2488,9 @@
   };
 
 
-  /* =======================================================
-     24. INIT MOTION
-     ======================================================= */
+  
+
+
 
   const initMotion = () => {
     if (!registerGSAP()) {
@@ -2533,9 +2533,9 @@
   };
 
 
-  /* =======================================================
-     25. INIT
-     ======================================================= */
+  
+
+
 
   const init = () => {
     if (state.initialized) {
@@ -2556,33 +2556,33 @@
       true;
 
 
-    /*
-     Interactions that should still work
-     without GSAP.
-    */
+    
+
+
+
 
     initFlowInteraction();
 
     initResourceRows();
 
 
-    /*
-     GSAP / ScrollTrigger.
-    */
+    
+
+
 
     initMotion();
 
 
-    /*
-     Hero appears after global loader.
-    */
+    
+
+
 
     waitForLoader();
 
 
-    /*
-     Lifecycle.
-    */
+    
+
+
 
     initImageRefresh();
 
@@ -2614,9 +2614,9 @@
   };
 
 
-  /* =======================================================
-     26. PUBLIC API
-     ======================================================= */
+  
+
+
 
   window.PrivoraService = {
     init,
@@ -2627,9 +2627,9 @@
   };
 
 
-  /* =======================================================
-     27. START
-     ======================================================= */
+  
+
+
 
   if (
     document.readyState ===

@@ -1,17 +1,17 @@
-/* =========================================================
-   PRIVORA — INDEX JAVASCRIPT
-   Digital Privacy & Online Security
 
-   IMPORTANT
-   ---------
-   This file REPLACES the previous index.js.
 
-   Requires:
-   - GSAP
-   - ScrollTrigger
-   - Swiper
-   - global.js
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
 
 (() => {
   "use strict";
@@ -19,9 +19,9 @@
   document.documentElement.classList.add("js");
 
 
-  /* =======================================================
-     01. STATE
-     ======================================================= */
+  
+
+
 
   const state = {
     initialized: false,
@@ -35,9 +35,9 @@
   };
 
 
-  /* =======================================================
-     02. HELPERS
-     ======================================================= */
+  
+
+
 
   const $ = (selector, scope = document) =>
     scope.querySelector(selector);
@@ -114,9 +114,9 @@
   };
 
 
-  /* =======================================================
-     03. HERO FALLBACK
-     ======================================================= */
+  
+
+
 
   const showHeroImmediately = () => {
     const copy = $(".home-hero__copy");
@@ -145,9 +145,9 @@
   };
 
 
-  /* =======================================================
-     04. HERO INTRO
-     ======================================================= */
+  
+
+
 
   const playHeroIntro = () => {
     if (state.heroPlayed) return;
@@ -199,7 +199,7 @@
       });
 
 
-    /* construction lines */
+    
 
     if (gridLines.length) {
       timeline.fromTo(
@@ -218,7 +218,7 @@
     }
 
 
-    /* hero object */
+    
 
     if (object) {
       timeline.fromTo(
@@ -241,7 +241,7 @@
     }
 
 
-    /* right copy */
+    
 
     if (copy) {
       timeline.set(
@@ -270,7 +270,7 @@
     }
 
 
-    /* circle button */
+    
 
     if (cta) {
       timeline.fromTo(
@@ -291,7 +291,7 @@
     }
 
 
-    /* little blue cursor circle */
+    
 
     if (microRing) {
       timeline.fromTo(
@@ -310,7 +310,7 @@
     }
 
 
-    /* huge bottom word */
+    
 
     if (word) {
       timeline.fromTo(
@@ -330,9 +330,9 @@
   };
 
 
-  /* =======================================================
-     05. WAIT FOR GLOBAL LOADER
-     ======================================================= */
+  
+
+
 
   const waitForLoader = () => {
     const loader =
@@ -387,10 +387,10 @@
     );
 
 
-    /*
-     Never leave hero hidden because
-     another script failed.
-    */
+    
+
+
+
 
     window.setTimeout(() => {
       if (!state.heroPlayed) {
@@ -402,9 +402,9 @@
   };
 
 
-  /* =======================================================
-     06. HERO OBJECT MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroObjectMotion = () => {
     if (
@@ -425,12 +425,12 @@
       $("img", object);
 
 
-    /*
-     Slow rotational movement.
-     Applied to image, not outer object,
-     so pointer/parallax motion can use
-     the outer element independently.
-    */
+    
+
+
+
+
+
 
     if (image) {
       window.gsap.to(
@@ -494,9 +494,9 @@
   };
 
 
-  /* =======================================================
-     07. HERO POINTER MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroPointer = () => {
     if (
@@ -618,9 +618,9 @@
   };
 
 
-  /* =======================================================
-     08. HERO SCROLL MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroScroll = () => {
     if (
@@ -709,9 +709,9 @@
   };
 
 
-  /* =======================================================
-     09. CONTINUOUS TOP RIBBON
-     ======================================================= */
+  
+
+
 
   const prepareRibbon = (track) => {
     if (!track) return null;
@@ -821,10 +821,10 @@
     });
 
 
-    /*
-     Pause movement when ribbon
-     is not visible.
-    */
+    
+
+
+
 
     if (
       typeof IntersectionObserver !==
@@ -870,9 +870,9 @@
   };
 
 
-  /* =======================================================
-     10. ABOUT REVEAL
-     ======================================================= */
+  
+
+
 
   const initAboutMotion = () => {
     if (
@@ -1030,9 +1030,9 @@
   };
 
 
-  /* =======================================================
-     11. OUR STEPS / SERVICE CARDS
-     ======================================================= */
+  
+
+
 
   const initServiceCards = () => {
     if (
@@ -1111,9 +1111,9 @@
   };
 
 
-  /* =======================================================
-     12. PREPARE HOVER-ROW MARQUEE
-     ======================================================= */
+  
+
+
 
   const prepareHoverMarquee = (row) => {
     const track =
@@ -1159,31 +1159,31 @@
     }
 
 
-    /*
-     Hidden rows do not need to burn CPU.
-    */
+    
+
+
 
     track.style.animationPlayState =
       "paused";
   };
 
 
-  /* =======================================================
-     13. SERVICE HOVER INTERACTION
-     -------------------------------------------------------
-     THIS IS THE IMPORTANT REFERENCE-LIKE EFFECT:
+  
 
-     mouse enter:
-     - text fades
-     - huge marquee appears
-     - photo appears
 
-     mouse movement:
-     - photo smoothly follows pointer
 
-     mouse leave:
-     - row returns to normal
-     ======================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
 
   const initServiceHoverRows = () => {
     const rows =
@@ -1271,10 +1271,10 @@
           );
 
 
-        /*
-         Keep photo away from far-left title
-         but still let it follow the cursor.
-        */
+        
+
+
+
 
         const minX =
           Math.min(
@@ -1300,11 +1300,11 @@
           );
 
 
-        /*
-         Image is allowed to extend outside
-         the row vertically just like the
-         reference interaction.
-        */
+        
+
+
+
+
 
         const localY =
           clamp(
@@ -1335,9 +1335,9 @@
 
 
       const activate = (event) => {
-        /*
-         Only one row active at a time.
-        */
+        
+
+
 
         rows.forEach((otherRow) => {
           if (otherRow !== row) {
@@ -1427,10 +1427,10 @@
       );
 
 
-      /*
-       Keyboard users still get the
-       active visual state.
-      */
+      
+
+
+
 
       row.addEventListener(
         "focusin",
@@ -1482,9 +1482,9 @@
   };
 
 
-  /* =======================================================
-     14. SERVICE SHOWCASE SCROLL REVEAL
-     ======================================================= */
+  
+
+
 
   const initServiceShowcaseReveal = () => {
     if (
@@ -1564,9 +1564,9 @@
   };
 
 
-  /* =======================================================
-     15. PARALLAX SECTION
-     ======================================================= */
+  
+
+
 
   const initParallax = () => {
     if (
@@ -1658,9 +1658,9 @@
   };
 
 
-  /* =======================================================
-     16. PHOTO SCHEME
-     ======================================================= */
+  
+
+
 
   const initPrivacyScheme = () => {
     const section =
@@ -1762,9 +1762,9 @@
   };
 
 
-  /* =======================================================
-     17. TESTIMONIAL SLIDE PREPARATION
-     ======================================================= */
+  
+
+
 
   const prepareSwiperSlides = (
     element,
@@ -1849,9 +1849,9 @@
   };
 
 
-  /* =======================================================
-     18. TESTIMONIAL SWIPER
-     ======================================================= */
+  
+
+
 
   const initTestimonials = () => {
     const element =
@@ -1953,9 +1953,9 @@
   };
 
 
-  /* =======================================================
-     19. TESTIMONIAL SECTION ENTRY
-     ======================================================= */
+  
+
+
 
   const initTestimonialsReveal = () => {
     if (
@@ -2023,9 +2023,9 @@
   };
 
 
-  /* =======================================================
-     20. PRINCIPLE PHOTO GRID
-     ======================================================= */
+  
+
+
 
   const initPrinciples = () => {
     if (
@@ -2102,10 +2102,10 @@
   };
 
 
-  /* =======================================================
-     21. FAQ ENTRY
-     Accordion itself is handled by global.js
-     ======================================================= */
+  
+
+
+
 
   const initFAQReveal = () => {
     if (
@@ -2177,9 +2177,9 @@
   };
 
 
-  /* =======================================================
-     22. CONTACT ENTRY
-     ======================================================= */
+  
+
+
 
   const initContactReveal = () => {
     if (
@@ -2253,9 +2253,9 @@
   };
 
 
-  /* =======================================================
-     23. GENERIC REFERENCE LABEL MOTION
-     ======================================================= */
+  
+
+
 
   const initLabels = () => {
     if (
@@ -2278,11 +2278,11 @@
         }
 
 
-        /*
-         If a parent section animation already
-         animates this label, don't separately
-         animate it.
-        */
+        
+
+
+
+
 
         if (
           label.closest(
@@ -2322,9 +2322,9 @@
   };
 
 
-  /* =======================================================
-     24. REFRESH
-     ======================================================= */
+  
+
+
 
   const refresh = () => {
     state.swipers.forEach(
@@ -2347,7 +2347,7 @@
           try {
             window.ScrollTrigger.refresh();
           } catch (_) {
-            /* no-op */
+            
           }
         }
       );
@@ -2355,9 +2355,9 @@
   };
 
 
-  /* =======================================================
-     25. REBUILD RIBBONS ON RESIZE
-     ======================================================= */
+  
+
+
 
   const rebuildRibbons = () => {
     state.ribbonLoops.forEach(
@@ -2424,9 +2424,9 @@
   };
 
 
-  /* =======================================================
-     26. IMAGE LOAD REFRESH
-     ======================================================= */
+  
+
+
 
   const initImageLoadRefresh = () => {
     const images =
@@ -2464,9 +2464,9 @@
   };
 
 
-  /* =======================================================
-     27. INIT MOTION
-     ======================================================= */
+  
+
+
 
   const initMotion = () => {
     if (!registerGSAP()) {
@@ -2509,9 +2509,9 @@
   };
 
 
-  /* =======================================================
-     28. INIT
-     ======================================================= */
+  
+
+
 
   const init = () => {
     if (state.initialized) return;
@@ -2530,19 +2530,19 @@
     state.initialized = true;
 
 
-    /*
-     Important:
-     hover rows are initialized regardless
-     of GSAP. GSAP only makes cursor motion
-     smoother.
-    */
+    
+
+
+
+
+
 
     initServiceHoverRows();
 
 
-    /*
-     Continuous marquee.
-    */
+    
+
+
 
     if (
       hasGSAP() &&
@@ -2552,23 +2552,23 @@
     }
 
 
-    /*
-     Swiper.
-    */
+    
+
+
 
     initTestimonials();
 
 
-    /*
-     Scroll / entrance motion.
-    */
+    
+
+
 
     initMotion();
 
 
-    /*
-     Hero waits for the page loader.
-    */
+    
+
+
 
     waitForLoader();
 
@@ -2601,9 +2601,9 @@
   };
 
 
-  /* =======================================================
-     29. PUBLIC API
-     ======================================================= */
+  
+
+
 
   window.PrivoraHome = {
     init,
@@ -2620,9 +2620,9 @@
   };
 
 
-  /* =======================================================
-     30. START
-     ======================================================= */
+  
+
+
 
   if (
     document.readyState ===

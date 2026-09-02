@@ -1,32 +1,32 @@
-/* =========================================================
-   PRIVORA — LEGAL JAVASCRIPT
-   Digital Privacy & Online Security
 
-   Used by:
-   - privacy.html
-   - terms.html
-   - cookies.html
 
-   Requires:
-   - GSAP
-   - ScrollTrigger
-   - global.js
 
-   Responsibilities:
-   - legal hero reveal
-   - legal document reveal
-   - sidebar navigation spy
-   - active legal section
-   - contact strip reveal
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 (() => {
   "use strict";
 
 
-  /* =======================================================
-     01. STATE
-     ======================================================= */
+  
+
+
 
   const state = {
     initialized: false,
@@ -43,9 +43,9 @@
   };
 
 
-  /* =======================================================
-     02. HELPERS
-     ======================================================= */
+  
+
+
 
   const $ = (
     selector,
@@ -81,7 +81,7 @@
           window.ScrollTrigger
         );
       } catch (_) {
-        /* no-op */
+        
       }
     }
 
@@ -102,9 +102,9 @@
   };
 
 
-  /* =======================================================
-     03. HERO FALLBACK
-     ======================================================= */
+  
+
+
 
   const showHeroImmediately = () => {
     $$(
@@ -127,9 +127,9 @@
   };
 
 
-  /* =======================================================
-     04. HERO INTRO
-     ======================================================= */
+  
+
+
 
   const playHeroIntro = () => {
     if (state.heroPlayed) {
@@ -192,7 +192,7 @@
       });
 
 
-    /* vertical construction lines */
+    
 
     if (gridLines.length) {
       timeline.fromTo(
@@ -215,7 +215,7 @@
     }
 
 
-    /* small label */
+    
 
     if (label) {
       timeline.fromTo(
@@ -237,7 +237,7 @@
     }
 
 
-    /* heading lines */
+    
 
     if (titleLines.length) {
       timeline.fromTo(
@@ -257,7 +257,7 @@
     }
 
 
-    /* right meta */
+    
 
     if (meta) {
       timeline.fromTo(
@@ -279,7 +279,7 @@
     }
 
 
-    /* background giant word */
+    
 
     if (giantWord) {
       timeline.fromTo(
@@ -302,9 +302,9 @@
   };
 
 
-  /* =======================================================
-     05. WAIT FOR GLOBAL LOADER
-     ======================================================= */
+  
+
+
 
   const waitForLoader = () => {
     const loader =
@@ -364,10 +364,10 @@
     );
 
 
-    /*
-     Safety fallback.
-     Hero should never stay hidden.
-    */
+    
+
+
+
 
     window.setTimeout(
       () => {
@@ -382,9 +382,9 @@
   };
 
 
-  /* =======================================================
-     06. HERO SCROLL MOTION
-     ======================================================= */
+  
+
+
 
   const initHeroScrollMotion = () => {
     if (
@@ -460,9 +460,9 @@
   };
 
 
-  /* =======================================================
-     07. LEGAL DOCUMENT INTRO
-     ======================================================= */
+  
+
+
 
   const initDocumentIntro = () => {
     const element =
@@ -503,9 +503,9 @@
   };
 
 
-  /* =======================================================
-     08. LEGAL SECTIONS REVEAL
-     ======================================================= */
+  
+
+
 
   const initSectionReveal = () => {
     if (
@@ -563,9 +563,9 @@
   };
 
 
-  /* =======================================================
-     09. SIDEBAR REVEAL
-     ======================================================= */
+  
+
+
 
   const initSidebarReveal = () => {
     const sidebar =
@@ -606,21 +606,21 @@
   };
 
 
-  /* =======================================================
-     10. SIDEBAR NAVIGATION
-     -------------------------------------------------------
-     HTML expected:
+  
 
-     <a
-       class="legal-sidebar__link"
-       href="#information"
-     >
 
-     <section
-       id="information"
-       class="legal-section"
-     >
-     ======================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
 
   const initSidebarNavigation = () => {
     const links =
@@ -688,19 +688,19 @@
     };
 
 
-    /*
-     First section active by default.
-    */
+    
+
+
 
     activateById(
       sections[0].id
     );
 
 
-    /*
-     Click activates instantly.
-     Actual scrolling is handled by global.js.
-    */
+    
+
+
+
 
     links.forEach((link) => {
       link.addEventListener(
@@ -728,13 +728,13 @@
     });
 
 
-    /*
-     Scroll spy.
+    
 
-     rootMargin is intentionally broad enough
-     that large legal sections do not flicker
-     between active states.
-    */
+
+
+
+
+
 
     if (
       typeof IntersectionObserver ===
@@ -801,9 +801,9 @@
     });
 
 
-    /*
-     Initial hash.
-    */
+    
+
+
 
     if (
       window.location.hash
@@ -831,9 +831,9 @@
   };
 
 
-  /* =======================================================
-     11. NOTE / TABLE REVEALS
-     ======================================================= */
+  
+
+
 
   const initDetailReveals = () => {
     if (
@@ -889,9 +889,9 @@
   };
 
 
-  /* =======================================================
-     12. LEGAL CONTACT STRIP
-     ======================================================= */
+  
+
+
 
   const initContactReveal = () => {
     const section =
@@ -962,9 +962,9 @@
       );
 
 
-      /*
-       Slow reference-style brand movement.
-      */
+      
+
+
 
       window.gsap.to(
         mark,
@@ -982,9 +982,9 @@
   };
 
 
-  /* =======================================================
-     13. REFRESH
-     ======================================================= */
+  
+
+
 
   const refresh = () => {
     if (
@@ -999,16 +999,16 @@
         try {
           window.ScrollTrigger.refresh();
         } catch (_) {
-          /* no-op */
+          
         }
       }
     );
   };
 
 
-  /* =======================================================
-     14. IMAGES
-     ======================================================= */
+  
+
+
 
   const initImageRefresh = () => {
     $$(
@@ -1039,9 +1039,9 @@
   };
 
 
-  /* =======================================================
-     15. RESIZE
-     ======================================================= */
+  
+
+
 
   const initResize = () => {
     window.addEventListener(
@@ -1065,9 +1065,9 @@
   };
 
 
-  /* =======================================================
-     16. MOTION INIT
-     ======================================================= */
+  
+
+
 
   const initMotion = () => {
     if (!registerGSAP()) {
@@ -1096,9 +1096,9 @@
   };
 
 
-  /* =======================================================
-     17. INIT
-     ======================================================= */
+  
+
+
 
   const init = () => {
     if (state.initialized) {
@@ -1119,30 +1119,30 @@
       true;
 
 
-    /*
-     Navigation spy does not depend on GSAP.
-    */
+    
+
+
 
     initSidebarNavigation();
 
 
-    /*
-     Animation.
-    */
+    
+
+
 
     initMotion();
 
 
-    /*
-     Hero waits for global loader.
-    */
+    
+
+
 
     waitForLoader();
 
 
-    /*
-     Lifecycle.
-    */
+    
+
+
 
     initImageRefresh();
 
@@ -1172,9 +1172,9 @@
   };
 
 
-  /* =======================================================
-     18. PUBLIC API
-     ======================================================= */
+  
+
+
 
   window.PrivoraLegal = {
     init,
@@ -1185,9 +1185,9 @@
   };
 
 
-  /* =======================================================
-     19. START
-     ======================================================= */
+  
+
+
 
   if (
     document.readyState ===

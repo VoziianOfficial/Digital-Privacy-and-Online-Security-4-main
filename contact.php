@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-/* =========================================================
-   PRIVORA — CONTACT FORM HANDLER
-   Digital Privacy & Online Security
-
-   Features:
-   - POST only
-   - JSON responses
-   - server-side validation
-   - honeypot spam protection
-   - no phone fields
-   - no mbstring dependency
-   - recipient email is read from config/config.js
-   ========================================================= */
 
 
-/* =========================================================
-   01. RESPONSE HEADERS
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 header('Content-Type: application/json; charset=UTF-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 
 
-/* =========================================================
-   02. RESPONSE HELPER
-   ========================================================= */
+
+
+
 
 function respond(
     bool $success,
@@ -50,9 +50,9 @@ function respond(
 }
 
 
-/* =========================================================
-   03. METHOD CHECK
-   ========================================================= */
+
+
+
 
 if (
     !isset($_SERVER['REQUEST_METHOD']) ||
@@ -68,15 +68,15 @@ if (
 }
 
 
-/* =========================================================
-   04. READ RECIPIENT FROM config/config.js
-   ---------------------------------------------------------
-   This keeps the website email in ONE place.
 
-   config/config.js:
 
-   email: "hello@privora-security.com",
-   ========================================================= */
+
+
+
+
+
+
+
 
 function getRecipientEmail(): ?string
 {
@@ -138,9 +138,9 @@ if ($recipientEmail === null) {
 }
 
 
-/* =========================================================
-   05. INPUT HELPERS
-   ========================================================= */
+
+
+
 
 function postString(string $key): string
 {
@@ -159,9 +159,9 @@ function postString(string $key): string
 
 function cleanSingleLine(string $value): string
 {
-    /*
-     Remove CR/LF to protect email headers.
-    */
+    
+
+
 
     $value = str_replace(
         ["\r", "\n"],
@@ -169,9 +169,9 @@ function cleanSingleLine(string $value): string
         $value
     );
 
-    /*
-     Collapse repeated whitespace.
-    */
+    
+
+
 
     $cleaned = preg_replace(
         '/[ \t]+/u',
@@ -189,9 +189,9 @@ function cleanSingleLine(string $value): string
 
 function textLength(string $value): int
 {
-    /*
-     UTF-8 character count without mbstring.
-    */
+    
+
+
 
     $count = preg_match_all(
         '/./us',
@@ -207,21 +207,21 @@ function textLength(string $value): int
 }
 
 
-/* =========================================================
-   06. HONEYPOT
-   ---------------------------------------------------------
-   Real users never see/fill this field.
-   ========================================================= */
+
+
+
+
+
 
 $honeypot =
     postString('website');
 
 
 if ($honeypot !== '') {
-    /*
-     Silent success prevents bots from learning
-     that the honeypot blocked the submission.
-    */
+    
+
+
+
 
     respond(
         true,
@@ -230,9 +230,9 @@ if ($honeypot !== '') {
 }
 
 
-/* =========================================================
-   07. COLLECT FIELDS
-   ========================================================= */
+
+
+
 
 $name =
     cleanSingleLine(
@@ -256,10 +256,10 @@ $message =
     postString('message');
 
 
-/*
- Phone numbers are intentionally not accepted
- or processed by this website.
-*/
+
+
+
+
 
 unset(
     $_POST['phone'],
@@ -269,9 +269,9 @@ unset(
 );
 
 
-/* =========================================================
-   08. REQUIRED FIELD VALIDATION
-   ========================================================= */
+
+
+
 
 if (
     $name === '' ||
@@ -287,9 +287,9 @@ if (
 }
 
 
-/* =========================================================
-   09. LENGTH VALIDATION
-   ========================================================= */
+
+
+
 
 if (
     textLength($name) < 2 ||
@@ -338,9 +338,9 @@ if (
 }
 
 
-/* =========================================================
-   10. EMAIL VALIDATION
-   ========================================================= */
+
+
+
 
 if (
     filter_var(
@@ -356,9 +356,9 @@ if (
 }
 
 
-/* =========================================================
-   11. REMOVE CONTROL CHARACTERS
-   ========================================================= */
+
+
+
 
 $nameSafe = preg_replace(
     '/[\x00-\x1F\x7F]/u',
@@ -384,23 +384,23 @@ if ($subjectSafe !== null) {
 }
 
 
-/* =========================================================
-   12. DETERMINE SAFE SENDER DOMAIN
-   ---------------------------------------------------------
-   We do NOT use the visitor's address as From,
-   because many servers reject that because of SPF/DMARC.
 
-   Visitor email goes into Reply-To instead.
-   ========================================================= */
+
+
+
+
+
+
+
 
 function getSenderAddress(): string
 {
     $host =
         $_SERVER['HTTP_HOST'] ?? '';
 
-    /*
-     Remove port if present.
-    */
+    
+
+
 
     $host = preg_replace(
         '/:\d+$/',
@@ -417,9 +417,9 @@ function getSenderAddress(): string
     );
 
 
-    /*
-     Remove a possible www prefix.
-    */
+    
+
+
 
     if (
         str_starts_with(
@@ -435,9 +435,9 @@ function getSenderAddress(): string
     }
 
 
-    /*
-     Only use a normal hostname.
-    */
+    
+
+
 
     if (
         $host !== '' &&
@@ -450,9 +450,9 @@ function getSenderAddress(): string
     }
 
 
-    /*
-     Development fallback.
-    */
+    
+
+
 
     return 'no-reply@localhost';
 }
@@ -462,18 +462,18 @@ $senderEmail =
     getSenderAddress();
 
 
-/* =========================================================
-   13. BUILD EMAIL SUBJECT
-   ========================================================= */
+
+
+
 
 $mailSubject =
     'Website contact: ' .
     $subject;
 
 
-/* =========================================================
-   14. OPTIONAL REQUEST INFORMATION
-   ========================================================= */
+
+
+
 
 $page =
     $_SERVER['HTTP_REFERER'] ?? 'Unknown';
@@ -485,9 +485,9 @@ $sentAt =
     ) . ' UTC';
 
 
-/* =========================================================
-   15. BUILD EMAIL BODY
-   ========================================================= */
+
+
+
 
 $mailBody =
     "New message from the website\n" .
@@ -514,9 +514,9 @@ $mailBody =
     $page . "\n";
 
 
-/* =========================================================
-   16. EMAIL HEADERS
-   ========================================================= */
+
+
+
 
 $headers = [
     'MIME-Version: 1.0',
@@ -535,9 +535,9 @@ $headers = [
 ];
 
 
-/* =========================================================
-   17. SEND EMAIL
-   ========================================================= */
+
+
+
 
 $mailSent = @mail(
     $recipientEmail,
@@ -550,9 +550,9 @@ $mailSent = @mail(
 );
 
 
-/* =========================================================
-   18. RESULT
-   ========================================================= */
+
+
+
 
 if (!$mailSent) {
     respond(

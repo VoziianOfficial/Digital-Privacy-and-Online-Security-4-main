@@ -1,16 +1,16 @@
-/* =========================================================
-   SITE CONFIG
-   Digital Privacy & Online Security Aggregator
 
-   Edit this file to update brand information across
-   the entire website.
-   ========================================================= */
+
+
+
+
+
+
 
 window.SiteConfig = {
 
-  /* -------------------------------------------------------
-     BRAND
-     ------------------------------------------------------- */
+  
+
+
 
   companyName: "Privora",
 
@@ -21,17 +21,17 @@ window.SiteConfig = {
   favicon: "assets/icons/favicon.svg",
 
 
-  /* -------------------------------------------------------
-     CONTACT
-     No phone numbers are used anywhere on the website.
-     ------------------------------------------------------- */
+  
+
+
+
 
   email: "hello@privora-security.com",
 
 
-  /* -------------------------------------------------------
-     BROWSER / SEO
-     ------------------------------------------------------- */
+  
+
+
 
   browserTitle: "{companyName} | Digital Privacy & Online Security",
 
@@ -41,12 +41,12 @@ window.SiteConfig = {
     "Independent digital privacy and online security information designed to help users explore privacy protection, safer browsing, account security and online security resources.",
 
 
-  /* -------------------------------------------------------
-     PAGE TITLES
+  
 
-     These values will be used by global.js to create
-     the browser-tab title for every page.
-     ------------------------------------------------------- */
+
+
+
+
 
   pageTitles: {
 
@@ -70,20 +70,20 @@ window.SiteConfig = {
   },
 
 
-  /* -------------------------------------------------------
-     FOOTER DISCLAIMER
+  
 
-     {companyName} will automatically be replaced
-     with the companyName value above.
-     ------------------------------------------------------- */
+
+
+
+
 
   disclaimer:
     "{companyName} is an independent digital privacy and online security information aggregator. We provide general educational resources and help users explore privacy and security-related services. We do not guarantee specific security outcomes, and users should independently verify providers, products, features, pricing, availability and suitability before making a decision.",
 
 
-  /* -------------------------------------------------------
-     GENERAL SITE TEXT
-     ------------------------------------------------------- */
+  
+
+
 
   serviceArea:
     "Digital privacy and online security resources",
@@ -92,9 +92,9 @@ window.SiteConfig = {
     "Resources and service availability may vary.",
 
 
-  /* -------------------------------------------------------
-     CONTACT FORM
-     ------------------------------------------------------- */
+  
+
+
 
   contactForm: {
 
@@ -112,11 +112,11 @@ window.SiteConfig = {
   },
 
 
-  /* -------------------------------------------------------
-     SERVICES
+  
 
-     Used later for navigation, footer and service links.
-     ------------------------------------------------------- */
+
+
+
 
   services: [
 
@@ -135,9 +135,9 @@ window.SiteConfig = {
   ],
 
 
-  /* -------------------------------------------------------
-     NAVIGATION
-     ------------------------------------------------------- */
+  
+
+
 
   navigation: {
 
@@ -156,12 +156,12 @@ window.SiteConfig = {
   },
 
 
-  /* -------------------------------------------------------
-     SOCIAL / TELEPHONE
+  
 
-     Intentionally not included.
-     This project must contain NO phone numbers.
-     ------------------------------------------------------- */
+
+
+
+
 
   phone: null
 

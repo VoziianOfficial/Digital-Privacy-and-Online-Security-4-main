@@ -1,51 +1,51 @@
-/* =========================================================
-   PRIVORA — GLOBAL JAVASCRIPT
-   Digital Privacy & Online Security
 
-   This file REPLACES the previous global.js.
 
-   Requires:
-   - config/config.js
-   - AOS
-   - GSAP
-   - ScrollTrigger
-   - Lenis
 
-   Responsibilities:
-   - config binding
-   - logo / favicon
-   - browser title
-   - navigation
-   - sticky header state
-   - mobile menu
-   - page loader
-   - page transitions
-   - Lenis
-   - AOS
-   - accordions
-   - cookie consent
-   - contact forms
-   - back to top
-   - internal anchors
-   - hover reveal
-   - custom cursor
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 (() => {
   "use strict";
 
 
-  /* =======================================================
-     01. HTML JS STATE
-     ======================================================= */
+  
+
+
 
   document.documentElement.classList.remove("no-js");
   document.documentElement.classList.add("js");
 
 
-  /* =======================================================
-     02. GLOBAL STATE
-     ======================================================= */
+  
+
+
 
   const state = {
     initialized: false,
@@ -74,9 +74,9 @@
   };
 
 
-  /* =======================================================
-     03. HELPERS
-     ======================================================= */
+  
+
+
 
   const $ = (
     selector,
@@ -117,27 +117,27 @@
   };
 
 
-  /* =======================================================
-     04. FIND GLOBAL SCRIPT
-     -------------------------------------------------------
-     We use global.js location to calculate project root.
+  
 
-     Example:
 
-     /project/assets/js/global.js
 
-     root becomes:
 
-     /project/
 
-     Therefore config paths such as:
 
-     assets/icons/logo.svg
 
-     also work correctly from:
 
-     /services/privacy-protection.html
-     ======================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
 
   const getGlobalScriptElement = () => {
     const scripts = Array.from(
@@ -171,7 +171,7 @@
         );
       }
     } catch (_) {
-      /* no-op */
+      
     }
 
     return new URL(
@@ -181,9 +181,9 @@
   })();
 
 
-  /* =======================================================
-     05. PATH RESOLUTION
-     ======================================================= */
+  
+
+
 
   const resolveSitePath = (
     value
@@ -205,9 +205,9 @@
     }
 
 
-    /*
-     Leave special protocols alone.
-    */
+    
+
+
 
     if (
       path.startsWith("#") ||
@@ -230,9 +230,9 @@
   };
 
 
-  /* =======================================================
-     06. CONFIG
-     ======================================================= */
+  
+
+
 
   const config =
     window.SiteConfig || {};
@@ -265,9 +265,9 @@
   };
 
 
-  /* =======================================================
-     07. TEMPLATE REPLACEMENT
-     ======================================================= */
+  
+
+
 
   const formatTemplate = (
     value
@@ -328,9 +328,9 @@
   };
 
 
-  /* =======================================================
-     08. PAGE KEY
-     ======================================================= */
+  
+
+
 
   const getPageKey = () => {
     const bodyPage =
@@ -406,16 +406,16 @@
   };
 
 
-  /* =======================================================
-     09. NORMALIZE INDEX PATH
-     -------------------------------------------------------
-     Treat:
+  
 
-     /project/
-     /project/index.html
 
-     as the same page.
-     ======================================================= */
+
+
+
+
+
+
+
 
   const normalizePagePath = (
     pathname
@@ -460,9 +460,9 @@
   };
 
 
-  /* =======================================================
-     10. APPLY COMPANY NAME
-     ======================================================= */
+  
+
+
 
   const applyCompanyName = () => {
     if (!config.companyName) {
@@ -479,9 +479,9 @@
   };
 
 
-  /* =======================================================
-     11. APPLY LOGO
-     ======================================================= */
+  
+
+
 
   const applyLogo = () => {
     if (!config.logo) {
@@ -511,12 +511,12 @@
       image.src = logoUrl;
 
 
-      /*
-       Preserve alt="" on decorative logos.
+      
 
-       For actual brand logos we replace
-       the hard-coded company name.
-      */
+
+
+
+
 
       if (
         image.getAttribute("alt") !==
@@ -531,9 +531,9 @@
   };
 
 
-  /* =======================================================
-     12. FAVICON
-     ======================================================= */
+  
+
+
 
   const applyFavicon = () => {
     if (!config.favicon) {
@@ -575,9 +575,9 @@
   };
 
 
-  /* =======================================================
-     13. BROWSER TITLE
-     ======================================================= */
+  
+
+
 
   const applyBrowserTitle = () => {
     const pageKey =
@@ -607,9 +607,9 @@
   };
 
 
-  /* =======================================================
-     14. META DESCRIPTION
-     ======================================================= */
+  
+
+
 
   const applyMetaDescription = () => {
     if (!config.metaDescription) {
@@ -645,9 +645,9 @@
   };
 
 
-  /* =======================================================
-     15. EMAIL
-     ======================================================= */
+  
+
+
 
   const applyEmail = () => {
     if (!config.email) {
@@ -673,9 +673,9 @@
   };
 
 
-  /* =======================================================
-     16. DISCLAIMER
-     ======================================================= */
+  
+
+
 
   const applyDisclaimer = () => {
     if (!config.disclaimer) {
@@ -698,9 +698,9 @@
   };
 
 
-  /* =======================================================
-     17. CURRENT YEAR
-     ======================================================= */
+  
+
+
 
   const applyCurrentYear = () => {
     const year =
@@ -716,9 +716,9 @@
   };
 
 
-  /* =======================================================
-     18. GENERAL CONFIG TEXT
-     ======================================================= */
+  
+
+
 
   const applyGeneralText = () => {
     if (config.serviceArea) {
@@ -775,9 +775,9 @@
   };
 
 
-  /* =======================================================
-     19. NAVIGATION FROM CONFIG
-     ======================================================= */
+  
+
+
 
   const applyNavigation = () => {
     const navigation =
@@ -814,15 +814,15 @@
       }
 
 
-      /*
-       On HOME:
+      
 
-       About / Contact remain simple hashes.
 
-       This gives instant smooth scrolling and
-       avoids unnecessarily navigating to
-       index.html#about.
-      */
+
+
+
+
+
+
 
       if (
         pageKey === "home" &&
@@ -854,9 +854,9 @@
   };
 
 
-  /* =======================================================
-     20. SERVICE CONFIG BINDING
-     ======================================================= */
+  
+
+
 
   const applyServices = () => {
     if (
@@ -951,9 +951,9 @@
   };
 
 
-  /* =======================================================
-     21. CLEAR NAV ACTIVE STATE
-     ======================================================= */
+  
+
+
 
   const clearActiveNavigation = () => {
     $$(
@@ -970,9 +970,9 @@
   };
 
 
-  /* =======================================================
-     22. ACTIVE NAVIGATION
-     ======================================================= */
+  
+
+
 
   const setPageNavigation = () => {
     clearActiveNavigation();
@@ -1034,9 +1034,9 @@
   };
 
 
-  /* =======================================================
-     23. APPLY CONFIG
-     ======================================================= */
+  
+
+
 
   const applyConfig = () => {
     applyCompanyName();
@@ -1080,9 +1080,9 @@
   };
 
 
-  /* =======================================================
-     24. GSAP REGISTRATION
-     ======================================================= */
+  
+
+
 
   const registerGSAP = () => {
     if (
@@ -1094,15 +1094,15 @@
           window.ScrollTrigger
         );
       } catch (_) {
-        /* no-op */
+        
       }
     }
   };
 
 
-  /* =======================================================
-     25. HEADER SCROLL STATE
-     ======================================================= */
+  
+
+
 
   const initHeader = () => {
     const header =
@@ -1155,9 +1155,9 @@
   };
 
 
-  /* =======================================================
-     26. LENIS
-     ======================================================= */
+  
+
+
 
   const initLenis = () => {
     if (
@@ -1198,9 +1198,9 @@
       state.lenis;
 
 
-    /*
-     GSAP ticker integration.
-    */
+    
+
+
 
     if (
       hasGSAP() &&
@@ -1236,9 +1236,9 @@
     }
 
 
-    /*
-     Fallback RAF if GSAP does not exist.
-    */
+    
+
+
 
     const raf = (
       time
@@ -1263,14 +1263,14 @@
   };
 
 
-  /* =======================================================
-     27. AOS
-     -------------------------------------------------------
-     AOS only handles elements explicitly using data-aos.
+  
 
-     index.js and service.js deliberately skip elements
-     controlled by AOS.
-     ======================================================= */
+
+
+
+
+
+
 
   const initAOS = () => {
     if (!hasAOS()) {
@@ -1311,9 +1311,9 @@
   };
 
 
-  /* =======================================================
-     28. MOBILE MENU
-     ======================================================= */
+  
+
+
 
   const initMobileMenu = () => {
     const toggle =
@@ -1484,9 +1484,9 @@
     );
 
 
-    /*
-     Close after selecting a link.
-    */
+    
+
+
 
     menu.addEventListener(
       "click",
@@ -1502,9 +1502,9 @@
     );
 
 
-    /*
-     ESC.
-    */
+    
+
+
 
     document.addEventListener(
       "keydown",
@@ -1521,9 +1521,9 @@
     );
 
 
-    /*
-     Desktop breakpoint.
-    */
+    
+
+
 
     window.addEventListener(
       "resize",
@@ -1550,9 +1550,9 @@
   };
 
 
-  /* =======================================================
-     29. ACCORDION
-     ======================================================= */
+  
+
+
 
   const initAccordions = () => {
     $$(
@@ -1686,9 +1686,9 @@
       );
 
 
-      /*
-       Optional automatic first item.
-      */
+      
+
+
 
       if (
         accordion.dataset
@@ -1706,9 +1706,9 @@
   };
 
 
-  /* =======================================================
-     30. STORAGE HELPERS
-     ======================================================= */
+  
+
+
 
   const storageGet = (
     key
@@ -1733,7 +1733,7 @@
           value
         );
     } catch (_) {
-      /* no-op */
+      
     }
   };
 
@@ -1745,14 +1745,14 @@
       window.localStorage
         .removeItem(key);
     } catch (_) {
-      /* no-op */
+      
     }
   };
 
 
-  /* =======================================================
-     31. COOKIE CONSENT
-     ======================================================= */
+  
+
+
 
   const COOKIE_KEY =
     "privora_cookie_preference_v1";
@@ -1865,9 +1865,9 @@
   };
 
 
-  /* =======================================================
-     32. CONTACT FORM STATUS
-     ======================================================= */
+  
+
+
 
   const setFormStatus = (
     form,
@@ -1926,9 +1926,9 @@
   };
 
 
-  /* =======================================================
-     33. CONTACT FORMS
-     ======================================================= */
+  
+
+
 
   const initContactForms = () => {
     $$(
@@ -2007,13 +2007,13 @@
               new FormData(form);
 
 
-            /*
-             This project deliberately
-             does not use phone fields.
+            
 
-             Even if somebody accidentally
-             adds one later, do not send it.
-            */
+
+
+
+
+
 
             [
               "phone",
@@ -2033,9 +2033,9 @@
               ).trim();
 
 
-            /*
-             Silent success for bots.
-            */
+            
+
+
 
             if (honeypot) {
               setFormStatus(
@@ -2193,9 +2193,9 @@
   };
 
 
-  /* =======================================================
-     34. LOADER
-     ======================================================= */
+  
+
+
 
   const initLoader = () => {
     const loader =
@@ -2227,10 +2227,10 @@
       performance.now();
 
 
-    /*
-     Short enough to avoid annoying the user,
-     but visible enough to feel intentional.
-    */
+    
+
+
+
 
     const minimumTime =
       state.reducedMotion
@@ -2315,9 +2315,9 @@
     }
 
 
-    /*
-     Absolute safety fallback.
-    */
+    
+
+
 
     window.setTimeout(
       hide,
@@ -2326,9 +2326,9 @@
   };
 
 
-  /* =======================================================
-     35. PAGE TRANSITION RESET
-     ======================================================= */
+  
+
+
 
   const resetPageTransition = () => {
     const panel =
@@ -2365,9 +2365,9 @@
   };
 
 
-  /* =======================================================
-     36. PAGE TRANSITION
-     ======================================================= */
+  
+
+
 
   const transitionToPage = (
     destination
@@ -2389,9 +2389,9 @@
       );
 
 
-    /*
-     Fallback.
-    */
+    
+
+
 
     if (
       !panel ||
@@ -2445,10 +2445,10 @@
     );
 
 
-    /*
-     Safety unlock in case navigation
-     is prevented by the browser.
-    */
+    
+
+
+
 
     window.setTimeout(
       () => {
@@ -2460,9 +2460,9 @@
   };
 
 
-  /* =======================================================
-     37. HEADER OFFSET
-     ======================================================= */
+  
+
+
 
   const getHeaderOffset = () => {
     const header =
@@ -2481,9 +2481,9 @@
   };
 
 
-  /* =======================================================
-     38. SMOOTH SCROLL
-     ======================================================= */
+  
+
+
 
   const scrollToElement = (
     target,
@@ -2541,9 +2541,9 @@
   };
 
 
-  /* =======================================================
-     39. HASH TARGET
-     ======================================================= */
+  
+
+
 
   const getHashTarget = (
     hash
@@ -2576,9 +2576,9 @@
   };
 
 
-  /* =======================================================
-     40. INTERNAL NAVIGATION
-     ======================================================= */
+  
+
+
 
   const initLinkNavigation = () => {
     document.addEventListener(
@@ -2664,9 +2664,9 @@
         }
 
 
-        /*
-         External website.
-        */
+        
+
+
 
         if (
           url.origin !==
@@ -2676,9 +2676,9 @@
         }
 
 
-        /*
-         Same page + hash.
-        */
+        
+
+
 
         if (
           isSamePage(url) &&
@@ -2718,7 +2718,7 @@
               url.hash
             );
           } catch (_) {
-            /* no-op */
+            
           }
 
 
@@ -2726,10 +2726,10 @@
         }
 
 
-        /*
-         Same exact page with no hash.
-         Let browser behaviour stand if needed.
-        */
+        
+
+
+
 
         if (
           isSamePage(url) &&
@@ -2770,9 +2770,9 @@
         }
 
 
-        /*
-         Another page in this project.
-        */
+        
+
+
 
         event.preventDefault();
 
@@ -2785,9 +2785,9 @@
   };
 
 
-  /* =======================================================
-     41. INITIAL HASH
-     ======================================================= */
+  
+
+
 
   const initInitialHash = () => {
     if (
@@ -2839,9 +2839,9 @@
   };
 
 
-  /* =======================================================
-     42. HOME NAV SPY
-     ======================================================= */
+  
+
+
 
   const initHomeNavSpy = () => {
     if (
@@ -2969,9 +2969,9 @@
     );
 
 
-    /*
-     Restore Home near top.
-    */
+    
+
+
 
     window.addEventListener(
       "scroll",
@@ -2992,9 +2992,9 @@
   };
 
 
-  /* =======================================================
-     43. BACK TO TOP
-     ======================================================= */
+  
+
+
 
   const initBackToTop = () => {
     const button =
@@ -3080,16 +3080,16 @@
   };
 
 
-  /* =======================================================
-     44. GENERIC HOVER REVEAL
-     -------------------------------------------------------
-     Optional use:
+  
 
-     data-hover-image="assets/images/example.webp"
 
-     This is separate from the special Case Study
-     interaction in index.js.
-     ======================================================= */
+
+
+
+
+
+
+
 
   const initHoverReveal = () => {
     if (
@@ -3274,9 +3274,9 @@
   };
 
 
-  /* =======================================================
-     45. CUSTOM CURSOR
-     ======================================================= */
+  
+
+
 
   const initCustomCursor = () => {
     const cursor =
@@ -3377,9 +3377,9 @@
   };
 
 
-  /* =======================================================
-     46. REFRESH LAYOUT
-     ======================================================= */
+  
+
+
 
   function refreshLayout() {
     if (
@@ -3390,7 +3390,7 @@
       try {
         state.lenis.resize();
       } catch (_) {
-        /* no-op */
+        
       }
     }
 
@@ -3401,7 +3401,7 @@
       try {
         window.ScrollTrigger.refresh();
       } catch (_) {
-        /* no-op */
+        
       }
     }
 
@@ -3410,7 +3410,7 @@
       try {
         window.AOS.refresh();
       } catch (_) {
-        /* no-op */
+        
       }
     }
 
@@ -3425,7 +3425,7 @@
         window.PrivoraHome
           .refresh();
       } catch (_) {
-        /* no-op */
+        
       }
     }
 
@@ -3440,15 +3440,15 @@
         window.PrivoraService
           .refresh();
       } catch (_) {
-        /* no-op */
+        
       }
     }
   }
 
 
-  /* =======================================================
-     47. IMAGE REFRESH
-     ======================================================= */
+  
+
+
 
   const initImageRefresh = () => {
     const images =
@@ -3501,9 +3501,9 @@
   };
 
 
-  /* =======================================================
-     48. RESIZE REFRESH
-     ======================================================= */
+  
+
+
 
   const initResizeRefresh = () => {
     window.addEventListener(
@@ -3527,9 +3527,9 @@
   };
 
 
-  /* =======================================================
-     49. BF CACHE / BACK BUTTON
-     ======================================================= */
+  
+
+
 
   const initPageRestore = () => {
     window.addEventListener(
@@ -3626,9 +3626,9 @@
   };
 
 
-  /* =======================================================
-     50. WINDOW LOAD REFRESH
-     ======================================================= */
+  
+
+
 
   const initLoadRefresh = () => {
     window.addEventListener(
@@ -3645,9 +3645,9 @@
   };
 
 
-  /* =======================================================
-     51. GLOBAL INITIALIZATION
-     ======================================================= */
+  
+
+
 
   const init = () => {
     if (
@@ -3661,16 +3661,16 @@
       true;
 
 
-    /*
-     CONFIG FIRST.
-    */
+    
+
+
 
     applyConfig();
 
 
-    /*
-     Libraries.
-    */
+    
+
+
 
     registerGSAP();
 
@@ -3679,9 +3679,9 @@
     initAOS();
 
 
-    /*
-     UI.
-    */
+    
+
+
 
     initHeader();
 
@@ -3700,9 +3700,9 @@
     initCustomCursor();
 
 
-    /*
-     Navigation.
-    */
+    
+
+
 
     resetPageTransition();
 
@@ -3711,9 +3711,9 @@
     initHomeNavSpy();
 
 
-    /*
-     Browser lifecycle.
-    */
+    
+
+
 
     initPageRestore();
 
@@ -3724,10 +3724,10 @@
     initLoadRefresh();
 
 
-    /*
-     Loader near end so home/service scripts
-     already have listeners ready.
-    */
+    
+
+
+
 
     initLoader();
 
@@ -3749,9 +3749,9 @@
   };
 
 
-  /* =======================================================
-     52. PUBLIC API
-     ======================================================= */
+  
+
+
 
   window.PrivoraSite = {
     init,
@@ -3783,9 +3783,9 @@
   };
 
 
-  /* =======================================================
-     53. START
-     ======================================================= */
+  
+
+
 
   if (
     document.readyState ===

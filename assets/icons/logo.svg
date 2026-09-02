@@ -6,15 +6,11 @@
 >
   <title id="logoTitle">Privora</title>
 
-  <!--
-    Privora ribbed vortex mark.
-    Transparent background.
-    No gradients.
-  -->
+  
 
   <defs>
 
-    <!-- One rib of the rotating object -->
+    
     <path
       id="rib"
       d="
@@ -37,10 +33,7 @@
   </defs>
 
 
-  <!--
-    Entire object is slightly compressed and rotated
-    to create the torus / perspective feel.
-  -->
+  
   <g
     transform="
       translate(48 48)
@@ -50,9 +43,7 @@
     "
   >
 
-    <!-- ===============================================
-         DARK BLUE SIDE
-         =============================================== -->
+    
 
     <g fill="#356FE6">
 
@@ -66,9 +57,7 @@
     </g>
 
 
-    <!-- ===============================================
-         MID BLUE SIDE
-         =============================================== -->
+    
 
     <g fill="#4487F4">
 
@@ -83,9 +72,7 @@
     </g>
 
 
-    <!-- ===============================================
-         BLUE
-         =============================================== -->
+    
 
     <g fill="#559EFF">
 
@@ -100,9 +87,7 @@
     </g>
 
 
-    <!-- ===============================================
-         LIGHT BLUE
-         =============================================== -->
+    
 
     <g fill="#68B8FF">
 
@@ -117,9 +102,7 @@
     </g>
 
 
-    <!-- ===============================================
-         BRIGHT CYAN SIDE
-         =============================================== -->
+    
 
     <g fill="#78CCFF">
 
@@ -135,12 +118,7 @@
   </g>
 
 
-  <!--
-    Inner opening.
-    It remains transparent instead of having its own fill.
-    This stroke makes the opening visually cleaner
-    on both black and very dark backgrounds.
-  -->
+  
   <ellipse
     cx="48"
     cy="48"
