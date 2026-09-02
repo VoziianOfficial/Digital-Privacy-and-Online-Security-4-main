@@ -795,14 +795,15 @@
   position: relative;
 
   padding:
-    70px 0;
+    72px 0;
 
   overflow: hidden;
 
   border-top:
     1px solid var(--legal-line);
 
-  background: #050607;
+  background:
+    linear-gradient(180deg, #07090a 0%, #030405 100%);
 }
 
 .legal-contact__inner {
@@ -812,39 +813,83 @@
     minmax(0, 1fr)
     auto;
 
-  gap: 60px;
+  gap: 34px;
 
   align-items: center;
+
+  padding:
+    clamp(24px, 3vw, 34px)
+    clamp(22px, 3.6vw, 46px);
+
+  border:
+    1px solid var(--legal-line-strong);
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(135deg, rgba(119, 190, 255, 0.1), rgba(255, 255, 255, 0.035) 42%, rgba(255, 255, 255, 0.018));
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.28);
 }
 
 .legal-contact__content {
-  max-width: 860px;
+  display: grid;
+
+  grid-template-columns:
+    minmax(250px, 0.74fr)
+    minmax(270px, 1fr)
+    auto;
+
+  gap:
+    clamp(20px, 3vw, 38px);
+
+  align-items: center;
+
+  max-width: none;
 }
 
 .legal-contact__title {
-  max-width: 810px;
+  max-width: 430px;
 
-  margin-bottom: 18px;
+  margin: 0;
 
   font-size:
-    clamp(2.5rem, 4.4vw, 4.8rem);
+    clamp(2.15rem, 3.1vw, 3.75rem);
 
-  line-height: 1;
+  line-height: 0.96;
 }
 
 .legal-contact__text {
-  max-width: 650px;
+  max-width: 510px;
 
   margin: 0;
 }
 
+.legal-contact .btn {
+  margin: 0;
+
+  justify-self: end;
+}
+
 .legal-contact__mark {
   width:
-    clamp(110px, 11vw, 155px);
+    clamp(86px, 8vw, 118px);
 
   aspect-ratio: 1;
 
   object-fit: contain;
+
+  padding:
+    clamp(16px, 1.8vw, 22px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.045);
 }
 
 
@@ -900,8 +945,7 @@
 
   .legal-hero__main,
   .legal-sidebar,
-  .legal-section__head,
-  .legal-contact__content {
+  .legal-section__head {
     width: 100%;
 
     text-align: center;
@@ -935,6 +979,28 @@
     margin-left: auto;
 
     text-align: center;
+  }
+
+  .legal-contact__content {
+    width: 100%;
+
+    grid-template-columns:
+      minmax(220px, 0.8fr)
+      minmax(240px, 1fr);
+  }
+
+  .legal-contact .btn {
+    grid-column: 1 / -1;
+
+    justify-self: start;
+  }
+
+  .legal-contact__title,
+  .legal-contact__text {
+    margin-right: 0;
+    margin-left: 0;
+
+    text-align: left;
   }
 
   .legal-hero__grid-line:nth-child(2) {
@@ -1042,7 +1108,7 @@
     grid-template-columns:
       1fr auto;
 
-    gap: 35px;
+    gap: 24px;
   }
 }
 
@@ -1094,6 +1160,30 @@
   .legal-contact {
     padding:
       62px 0;
+  }
+
+  .legal-contact__inner,
+  .legal-contact__content {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-contact__inner {
+    gap: 26px;
+  }
+
+  .legal-contact .btn,
+  .legal-contact__mark {
+    justify-self: center;
+  }
+
+  .legal-contact__title,
+  .legal-contact__text {
+    max-width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: center;
   }
 }
 
@@ -1285,6 +1375,9 @@
 
   .legal-contact__inner {
     grid-template-columns: 1fr;
+
+    padding:
+      24px 18px;
 
     text-align: center;
   }
