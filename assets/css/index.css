@@ -234,8 +234,8 @@
 .home-hero__copy {
   position: absolute;
 
-  top: 7%;
-  right: 2%;
+  top: 10%;
+  right: 4%;
 
   z-index: 5;
 
@@ -245,7 +245,10 @@
 .home-hero__title {
   max-width: 560px;
 
+  box-sizing: border-box;
+
   margin: 0;
+  padding: 0.12em 0.1em 0.16em;
 
   font-family: var(--font-display);
 
@@ -377,13 +380,13 @@
 .home-hero__word-wrap {
   position: absolute;
 
-  right: 0;
-  bottom: -0.045em;
-  left: 0;
+  right: clamp(18px, 3vw, 48px);
+  bottom: clamp(18px, 2.4vw, 36px);
+  left: clamp(18px, 3vw, 48px);
 
   z-index: 3;
 
-  overflow: hidden;
+  overflow: visible;
 
   pointer-events: none;
 }
@@ -391,14 +394,14 @@
 .home-hero__word {
   display: block;
 
-  margin: 0 0 -0.08em -0.018em;
+  margin: 0;
 
   color: #fff;
 
   font-family: var(--font-display);
   font-size: clamp(8.8rem, 17.7vw, 18rem);
   font-weight: 400;
-  line-height: 0.74;
+  line-height: 0.82;
 
   letter-spacing: -0.055em;
 
@@ -2206,7 +2209,7 @@
 
   .home-hero__copy {
     top: 10%;
-    right: 3%;
+    right: 4%;
 
     width: 48%;
   }
@@ -2396,8 +2399,8 @@
   }
 
   .home-hero__copy {
-    top: 8%;
-    right: 0;
+    top: 10%;
+    right: 20px;
 
     width: 54%;
   }
@@ -2615,8 +2618,8 @@
   }
 
   .home-hero__copy {
-    top: 8%;
-    right: 0;
+    top: 10%;
+    right: 16px;
 
     width: 57%;
   }
@@ -3027,6 +3030,8 @@
   }
 
   .home-hero__copy {
+    right: 14px;
+
     width: 60%;
   }
 

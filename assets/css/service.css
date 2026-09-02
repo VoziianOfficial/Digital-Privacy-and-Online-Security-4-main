@@ -196,8 +196,8 @@
 .service-hero__intro {
   position: absolute;
 
-  top: 9%;
-  left: 2%;
+  top: 12%;
+  left: 4%;
 
   z-index: 6;
 
@@ -207,7 +207,10 @@
 .service-hero__title {
   max-width: 670px;
 
+  box-sizing: border-box;
+
   margin: 0;
+  padding: 0.12em 0.1em 0.16em;
 
   font-size:
     clamp(3.3rem, 6.3vw, 7rem);
@@ -456,13 +459,13 @@
 .service-hero__word-wrap {
   position: absolute;
 
-  right: 0;
-  bottom: -0.04em;
-  left: 0;
+  right: clamp(18px, 3vw, 48px);
+  bottom: clamp(18px, 2.4vw, 36px);
+  left: clamp(18px, 3vw, 48px);
 
   z-index: 2;
 
-  overflow: hidden;
+  overflow: visible;
 
   pointer-events: none;
 }
@@ -470,8 +473,7 @@
 .service-hero__word {
   display: block;
 
-  margin:
-    0 0 -0.07em -0.015em;
+  margin: 0;
 
   color: rgba(255, 255, 255, 0.93);
 
@@ -480,7 +482,7 @@
   font-size:
     clamp(7rem, 14vw, 14.5rem);
 
-  line-height: 0.76;
+  line-height: 0.82;
 
   letter-spacing: -0.06em;
 
@@ -2151,15 +2153,15 @@
   }
 
   .service-hero__intro {
-    top: 8%;
-    left: 0;
+    top: 10%;
+    left: 20px;
 
     width: 58%;
   }
 
   .service-hero__copy {
     top: 10%;
-    right: 0;
+    right: 20px;
 
     width: 36%;
   }
@@ -2553,8 +2555,8 @@
   }
 
   .service-hero__intro {
-    top: 7%;
-    left: 0;
+    top: 10%;
+    left: 16px;
 
     width: 66%;
   }
@@ -2567,8 +2569,8 @@
   }
 
   .service-hero__copy {
-    top: 8%;
-    right: 0;
+    top: 10%;
+    right: 16px;
 
     width: 31%;
   }
