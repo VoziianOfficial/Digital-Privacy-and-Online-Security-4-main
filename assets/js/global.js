@@ -2093,6 +2093,13 @@
         async (event) => {
           event.preventDefault();
 
+          if (
+            form.dataset.submitting ===
+            "true"
+          ) {
+            return;
+          }
+
 
           if (
             !form.checkValidity()
@@ -2154,6 +2161,9 @@
             "",
             ""
           );
+
+          form.dataset.submitting =
+            "true";
 
 
           try {
@@ -2307,12 +2317,6 @@
               )
             );
           } catch (error) {
-            console.error(
-              "Contact form error:",
-              error
-            );
-
-
             setFormStatus(
               form,
               "error",
@@ -2340,6 +2344,10 @@
                   originalText;
               }
             }
+
+
+            delete form.dataset
+              .submitting;
           }
         }
       );
@@ -3381,6 +3389,19 @@
     if (!image) {
       return;
     }
+
+    image.addEventListener(
+      "error",
+      () => {
+        reveal.classList.remove(
+          "is-visible"
+        );
+
+        image.removeAttribute(
+          "src"
+        );
+      }
+    );
 
 
     let targetX = -300;
