@@ -27,12 +27,17 @@
   --home-panel: #050607;
   --home-line: rgba(255, 255, 255, 0.09);
   --home-line-strong: rgba(255, 255, 255, 0.15);
+  --home-section-gap: 92px;
+  --home-section-gap-mobile: 68px;
+  --home-content-gap: 34px;
+  --home-card-gap: 18px;
 
   position: relative;
 
   width: 100%;
 
-  overflow: clip;
+  overflow-x: visible;
+  overflow-y: visible;
 
   background: var(--home-black);
 }
@@ -3143,7 +3148,7 @@
     min-height: 470px;
 
     margin-left: auto;
-    margin-top: -150px;
+    margin-top: -84px;
   }
 
   .home-about__copy {
@@ -3383,7 +3388,7 @@
 
     min-height: 370px;
 
-    margin-top: -100px;
+    margin-top: 0;
   }
 
   .home-about__facts {
@@ -3862,5 +3867,191 @@
   .privacy-scheme__connector,
   .privacy-scheme__connector::after {
     transition: none !important;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 900px) {
+
+  .home-page .container,
+  .home-page .container > *,
+  .home-page section > .container > * {
+    min-width: 0;
+  }
+
+  .home-about,
+  .home-services,
+  .home-service-showcase,
+  .home-scheme,
+  .home-principles,
+  .home-faq,
+  .home-contact {
+    padding:
+      var(--home-section-gap-mobile)
+      0;
+  }
+
+  .home-about__copy,
+  .home-services__layout,
+  .home-service-showcase__head,
+  .home-scheme__head,
+  .home-principles__head,
+  .home-contact__layout {
+    gap: var(--home-content-gap);
+  }
+
+  .home-billboard {
+    width: 100%;
+    padding:
+      0
+      0
+      36px;
+    overflow: hidden;
+  }
+
+  .home-billboard > .container {
+    width:
+      min(
+        calc(100% - 30px),
+        var(--container)
+      );
+  }
+
+  .home-billboard__stage {
+    width: 100%;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .home-parallax {
+    width:
+      min(
+        calc(100% - 30px),
+        var(--container)
+      );
+    min-height: clamp(520px, 68vw, 640px);
+  }
+
+  .home-parallax__zones,
+  .home-parallax__zone {
+    min-height: inherit;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 720px) {
+
+  .home-about__small-media,
+  .home-about__large-media {
+    margin-inline: auto;
+  }
+
+  .home-billboard__stage {
+    height: clamp(230px, 50vw, 320px);
+  }
+
+  .home-parallax {
+    min-height: 620px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 560px) {
+
+  .home-about,
+  .home-services,
+  .home-service-showcase,
+  .home-scheme,
+  .home-testimonials,
+  .home-principles,
+  .home-faq,
+  .home-contact {
+    padding:
+      62px
+      0;
+  }
+
+  .home-about__layout {
+    gap: 24px;
+  }
+
+  .home-about__small-media,
+  .home-about__large-media {
+    width: 100%;
+    max-width: 390px;
+  }
+
+  .home-about__large-media {
+    min-height: 320px;
+    margin-top: 0;
+  }
+
+  .home-about__small-media {
+    min-height: 240px;
+  }
+
+  .home-billboard {
+    padding-bottom: 30px;
+  }
+
+  .home-billboard > .container,
+  .home-parallax {
+    width:
+      min(
+        calc(100% - 24px),
+        var(--container)
+      );
+  }
+
+  .home-billboard__stage {
+    height: clamp(210px, 56vw, 270px);
+  }
+
+  .home-parallax,
+  .home-parallax__zones {
+    min-height: auto;
+  }
+
+  .home-parallax__zones {
+    min-height: 0;
+  }
+
+  .home-parallax__zone {
+    min-height: 158px;
+    padding:
+      22px
+      18px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 390px) {
+
+  .home-about__small-media {
+    min-height: 220px;
+  }
+
+  .home-about__large-media {
+    min-height: 300px;
+  }
+
+  .home-parallax__zone {
+    min-height: 150px;
   }
 }

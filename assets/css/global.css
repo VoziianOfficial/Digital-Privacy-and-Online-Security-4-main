@@ -2521,6 +2521,20 @@ textarea.form-control {
       66px 0;
   }
 
+  .btn {
+    max-width: 100%;
+
+    white-space: normal;
+    text-align: center;
+  }
+
+  input,
+  textarea,
+  select {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   h1 {
     font-size:
       clamp(
