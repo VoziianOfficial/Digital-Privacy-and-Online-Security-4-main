@@ -28,6 +28,8 @@ window.SiteConfig = {
 
   email: "hello@privora-security.com",
 
+  cookiePreferenceKey: "privora_cookie_preference_v1",
+
 
   
 
@@ -39,6 +41,28 @@ window.SiteConfig = {
 
   metaDescription:
     "Independent digital privacy and online security information designed to help users explore privacy protection, safer browsing, account security and online security resources.",
+
+  pageDescriptions: {
+
+    home:
+      "Independent digital privacy and online security resources.",
+
+    privacyProtection:
+      "Explore practical digital privacy protection resources, browser privacy, permissions, account exposure and personal data control.",
+
+    onlineSecurity:
+      "Explore practical online security resources covering account protection, authentication, suspicious activity, safer access and everyday digital security.",
+
+    privacy:
+      "Privacy Policy explaining how {companyName} handles website information, contact form submissions, cookies and third-party resources.",
+
+    terms:
+      "Terms of Use for {companyName}, an independent digital privacy and online security information aggregator.",
+
+    cookies:
+      "Cookie Policy explaining how {companyName} uses essential browser storage and remembers website preferences."
+
+  },
 
 
   

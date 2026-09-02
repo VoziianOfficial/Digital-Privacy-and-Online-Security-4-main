@@ -636,7 +636,24 @@
 
 
   const applyMetaDescription = () => {
-    if (!config.metaDescription) {
+    const pageKey =
+      getPageKey();
+
+
+    const descriptions =
+      config.pageDescriptions || {};
+
+
+    const rawDescription =
+      descriptions[pageKey] ||
+      (!document.querySelector(
+        'meta[name="description"]'
+      )
+        ? config.metaDescription
+        : "");
+
+
+    if (!rawDescription) {
       return;
     }
 
@@ -664,7 +681,7 @@
 
     element.content =
       formatTemplate(
-        config.metaDescription
+        rawDescription
       );
   };
 
@@ -1784,7 +1801,8 @@
 
 
   const COOKIE_KEY =
-    "privora_cookie_preference_v1";
+    config.cookiePreferenceKey ||
+    "site_cookie_preference_v1";
 
 
   const initCookieConsent = () => {
