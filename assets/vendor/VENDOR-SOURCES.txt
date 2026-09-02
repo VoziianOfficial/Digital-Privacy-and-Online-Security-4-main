@@ -1,0 +1,25 @@
+DIGITAL PRIVACY & ONLINE SECURITY
+Vendor dependencies
+
+AOS
+https://github.com/michalsnik/aos
+
+Swiper
+https://swiperjs.com/
+
+GSAP
+https://gsap.com/
+
+GSAP ScrollTrigger
+https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+
+Lenis
+https://lenis.darkroom.engineering/
+
+Important:
+- AOS will be used only for lightweight reveal animations.
+- GSAP will handle complex motion and page transitions.
+- ScrollTrigger will handle controlled parallax/reveal effects.
+- Swiper will handle all sliders/carousels.
+- Lenis will handle smooth scrolling.
+- Do not animate the same element with AOS and GSAP simultaneously.

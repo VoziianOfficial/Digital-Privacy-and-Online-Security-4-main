@@ -1,0 +1,155 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 96 96"
+  role="img"
+  aria-labelledby="logoTitle"
+>
+  <title id="logoTitle">Privora</title>
+
+  <!--
+    Privora ribbed vortex mark.
+    Transparent background.
+    No gradients.
+  -->
+
+  <defs>
+
+    <!-- One rib of the rotating object -->
+    <path
+      id="rib"
+      d="
+        M45.15 7.6
+        C45.35 5.95 46.55 4.8 48 4.8
+        C49.45 4.8 50.65 5.95 50.85 7.6
+
+        L53.15 25.4
+
+        C53.4 27.25 51.95 28.8 50.15 28.8
+
+        H45.85
+
+        C44.05 28.8 42.6 27.25 42.85 25.4
+
+        Z
+      "
+    />
+
+  </defs>
+
+
+  <!--
+    Entire object is slightly compressed and rotated
+    to create the torus / perspective feel.
+  -->
+  <g
+    transform="
+      translate(48 48)
+      rotate(-17)
+      scale(1 0.83)
+      translate(-48 -48)
+    "
+  >
+
+    <!-- ===============================================
+         DARK BLUE SIDE
+         =============================================== -->
+
+    <g fill="#356FE6">
+
+      <use href="#rib" transform="rotate(192 48 48)"/>
+      <use href="#rib" transform="rotate(204 48 48)"/>
+      <use href="#rib" transform="rotate(216 48 48)"/>
+      <use href="#rib" transform="rotate(228 48 48)"/>
+      <use href="#rib" transform="rotate(240 48 48)"/>
+      <use href="#rib" transform="rotate(252 48 48)"/>
+
+    </g>
+
+
+    <!-- ===============================================
+         MID BLUE SIDE
+         =============================================== -->
+
+    <g fill="#4487F4">
+
+      <use href="#rib" transform="rotate(156 48 48)"/>
+      <use href="#rib" transform="rotate(168 48 48)"/>
+      <use href="#rib" transform="rotate(180 48 48)"/>
+
+      <use href="#rib" transform="rotate(264 48 48)"/>
+      <use href="#rib" transform="rotate(276 48 48)"/>
+      <use href="#rib" transform="rotate(288 48 48)"/>
+
+    </g>
+
+
+    <!-- ===============================================
+         BLUE
+         =============================================== -->
+
+    <g fill="#559EFF">
+
+      <use href="#rib" transform="rotate(120 48 48)"/>
+      <use href="#rib" transform="rotate(132 48 48)"/>
+      <use href="#rib" transform="rotate(144 48 48)"/>
+
+      <use href="#rib" transform="rotate(300 48 48)"/>
+      <use href="#rib" transform="rotate(312 48 48)"/>
+      <use href="#rib" transform="rotate(324 48 48)"/>
+
+    </g>
+
+
+    <!-- ===============================================
+         LIGHT BLUE
+         =============================================== -->
+
+    <g fill="#68B8FF">
+
+      <use href="#rib" transform="rotate(84 48 48)"/>
+      <use href="#rib" transform="rotate(96 48 48)"/>
+      <use href="#rib" transform="rotate(108 48 48)"/>
+
+      <use href="#rib" transform="rotate(336 48 48)"/>
+      <use href="#rib" transform="rotate(348 48 48)"/>
+      <use href="#rib" transform="rotate(0 48 48)"/>
+
+    </g>
+
+
+    <!-- ===============================================
+         BRIGHT CYAN SIDE
+         =============================================== -->
+
+    <g fill="#78CCFF">
+
+      <use href="#rib" transform="rotate(12 48 48)"/>
+      <use href="#rib" transform="rotate(24 48 48)"/>
+      <use href="#rib" transform="rotate(36 48 48)"/>
+      <use href="#rib" transform="rotate(48 48 48)"/>
+      <use href="#rib" transform="rotate(60 48 48)"/>
+      <use href="#rib" transform="rotate(72 48 48)"/>
+
+    </g>
+
+  </g>
+
+
+  <!--
+    Inner opening.
+    It remains transparent instead of having its own fill.
+    This stroke makes the opening visually cleaner
+    on both black and very dark backgrounds.
+  -->
+  <ellipse
+    cx="48"
+    cy="48"
+    rx="17.2"
+    ry="13.9"
+    transform="rotate(-17 48 48)"
+    fill="none"
+    stroke="#020304"
+    stroke-width="4.5"
+  />
+
+</svg>

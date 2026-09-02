@@ -1,0 +1,97 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-labelledby="faviconTitle"
+>
+  <title id="faviconTitle">Privora</title>
+
+  <rect
+    width="64"
+    height="64"
+    rx="15"
+    fill="#020304"
+  />
+
+  <defs>
+
+    <path
+      id="fav-rib"
+      d="
+        M30.2 9.3
+        C30.35 8.15 31.1 7.4 32 7.4
+        C32.9 7.4 33.65 8.15 33.8 9.3
+
+        L35.2 21.7
+
+        C35.35 22.9 34.45 23.8 33.35 23.8
+
+        H30.65
+
+        C29.55 23.8 28.65 22.9 28.8 21.7
+
+        Z
+      "
+    />
+
+  </defs>
+
+
+  <g
+    transform="
+      translate(32 32)
+      rotate(-18)
+      scale(1 0.84)
+      translate(-32 -32)
+    "
+  >
+
+    <g fill="#356FE6">
+      <use href="#fav-rib" transform="rotate(180 32 32)"/>
+      <use href="#fav-rib" transform="rotate(200 32 32)"/>
+      <use href="#fav-rib" transform="rotate(220 32 32)"/>
+      <use href="#fav-rib" transform="rotate(240 32 32)"/>
+    </g>
+
+
+    <g fill="#4D8FFF">
+      <use href="#fav-rib" transform="rotate(140 32 32)"/>
+      <use href="#fav-rib" transform="rotate(160 32 32)"/>
+
+      <use href="#fav-rib" transform="rotate(260 32 32)"/>
+      <use href="#fav-rib" transform="rotate(280 32 32)"/>
+    </g>
+
+
+    <g fill="#63B6FF">
+      <use href="#fav-rib" transform="rotate(80 32 32)"/>
+      <use href="#fav-rib" transform="rotate(100 32 32)"/>
+      <use href="#fav-rib" transform="rotate(120 32 32)"/>
+
+      <use href="#fav-rib" transform="rotate(300 32 32)"/>
+      <use href="#fav-rib" transform="rotate(320 32 32)"/>
+    </g>
+
+
+    <g fill="#79D0FF">
+      <use href="#fav-rib" transform="rotate(0 32 32)"/>
+      <use href="#fav-rib" transform="rotate(20 32 32)"/>
+      <use href="#fav-rib" transform="rotate(40 32 32)"/>
+      <use href="#fav-rib" transform="rotate(60 32 32)"/>
+
+      <use href="#fav-rib" transform="rotate(340 32 32)"/>
+    </g>
+
+  </g>
+
+
+  <ellipse
+    cx="32"
+    cy="32"
+    rx="10.8"
+    ry="8.6"
+    transform="rotate(-18 32 32)"
+    fill="#020304"
+  />
+
+</svg>
