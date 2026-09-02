@@ -40,7 +40,8 @@
 
   width: 100%;
 
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
 
   background: var(--service-black);
 }
@@ -497,21 +498,44 @@
 .service-intro {
   position: relative;
 
-  padding: 92px 0;
+  padding: 96px 0 104px;
 
-  overflow: hidden;
+  overflow: visible;
 
   background: #020304;
 }
 
+.service-intro::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: max(18px, calc((100vw - var(--container)) / 2));
+
+  width: min(600px, 43vw);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: rgba(119, 190, 255, 0.055);
+
+  transform:
+    translate(-19%, -50%);
+
+  pointer-events: none;
+}
+
 .service-intro__layout {
+  position: relative;
+  z-index: 1;
+
   display: grid;
 
   grid-template-columns:
-    minmax(0, 0.76fr)
-    minmax(0, 1.24fr);
+    minmax(0, 0.86fr)
+    minmax(0, 1.14fr);
 
-  gap: 88px;
+  gap: 82px;
 
   align-items: start;
 }
@@ -526,17 +550,24 @@
 
   top:
     calc(var(--header-height) + 34px);
+
+  width: min(100%, 650px);
+
+  padding:
+    22px 0 0;
 }
 
 .service-intro__title {
-  max-width: 680px;
+  max-width: none;
 
-  margin-bottom: 34px;
+  margin-bottom: 26px;
 
   font-size:
-    clamp(3.1rem, 5.1vw, 5.5rem);
+    clamp(2.7rem, 3.75vw, 4.35rem);
 
-  line-height: 1;
+  line-height: 1.04;
+
+  white-space: nowrap;
 }
 
 .service-intro__title-accent {
@@ -547,9 +578,35 @@
 }
 
 .service-intro__heading p {
-  max-width: 470px;
+  max-width: 520px;
 
   color: #aeb1b8;
+}
+
+.service-intro__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+
+  margin-top: 34px;
+}
+
+.service-intro__actions .btn {
+  text-align: center;
+}
+
+.service-intro__email {
+  color: #fff;
+
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.service-intro__email:hover {
+  border-color: var(--service-blue);
+
+  color: var(--service-blue);
 }
 
 
@@ -570,6 +627,7 @@
 
   border:
     1px solid var(--service-line);
+  border-radius: var(--radius-xs);
 
   background: #050607;
 }
@@ -592,86 +650,26 @@
   top: 0;
   right: 0;
 
-  width: 69%;
-  height: 74%;
+  width: 78%;
+  height: 86%;
 }
 
 .service-intro__image--small {
-  bottom: 0;
-  left: 0;
+  bottom: -4%;
+  left: 2%;
 
   z-index: 3;
 
-  width: 46%;
-  height: 48%;
-}
-
-.service-intro__caption {
-  position: absolute;
-
-  right: 14px;
-  bottom: 14px;
-  left: 14px;
-
-  z-index: 4;
-
-  padding: 11px 13px;
+  width: 43%;
+  height: 42%;
 
   border:
-    1px solid rgba(255, 255, 255, 0.13);
-
-  background: #050607;
-
-  color: #fff;
-
-  font-family: var(--font-accent);
-  font-size: 0.77rem;
+    10px solid #020304;
 }
-
-
-
-
-
 
 .service-intro__connector {
-  position: absolute;
-
-  top: 56%;
-  left: 37%;
-
-  z-index: 6;
-
-  width: 24%;
-  height: 1px;
-
-  background: var(--service-blue);
-
-  transform: rotate(-17deg);
-
-  transform-origin: left center;
+  display: none;
 }
-
-.service-intro__connector::after {
-  content: "";
-
-  position: absolute;
-  top: 50%;
-  right: -4px;
-
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background: var(--service-blue);
-
-  transform: translateY(-50%);
-}
-
-
-
-
-
 
 .service-overview {
   position: relative;
@@ -2091,6 +2089,10 @@
     gap: 48px;
   }
 
+  .service-intro__title {
+    white-space: normal;
+  }
+
   .service-focus__grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
@@ -2202,12 +2204,20 @@
     gap: 46px;
   }
 
-  .service-intro__heading,
   .service-overview__intro,
   .service-contact__intro {
     position: relative;
 
     top: auto;
+
+    max-width: 720px;
+  }
+
+  .service-intro__heading {
+    position: sticky;
+
+    top:
+      calc(var(--header-height) + 24px);
 
     max-width: 720px;
   }
@@ -2397,6 +2407,23 @@
   .service-resources__copy,
   .service-faq__copy,
   .service-contact__intro p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .service-intro::before {
+    top: 24%;
+    left: 50%;
+
+    width: min(560px, 92vw);
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+  .service-intro__actions {
+    justify-content: center;
+
     margin-right: auto;
     margin-left: auto;
   }
@@ -2649,6 +2676,20 @@
     min-height: 460px;
   }
 
+  .service-intro__actions {
+    gap: 14px;
+
+    margin-top: 28px;
+  }
+
+  .service-intro__email {
+    justify-content: center;
+
+    max-width: 100%;
+
+    font-size: 0.9rem;
+  }
+
   .service-intro__image--main {
     right: 0;
 
@@ -2664,9 +2705,6 @@
   .service-intro__connector {
     display: none;
   }
-
-
-  
 
   .service-overview-item {
     grid-template-columns: 1fr;
