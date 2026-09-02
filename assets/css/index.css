@@ -1188,6 +1188,7 @@
   --hover-y: 50%;
 
   position: relative;
+  z-index: 1;
 
   min-height: 134px;
 
@@ -1196,6 +1197,11 @@
   border-bottom: 1px solid var(--home-line);
 
   isolation: isolate;
+}
+
+.service-hover-row:hover,
+.service-hover-row.is-active {
+  z-index: 20;
 }
 
 .service-hover-row__link {
@@ -1310,7 +1316,7 @@
   top: var(--hover-y);
   left: var(--hover-x);
 
-  z-index: 8;
+  z-index: 30;
 
   width: clamp(210px, 18vw, 300px);
   aspect-ratio: 0.82;
