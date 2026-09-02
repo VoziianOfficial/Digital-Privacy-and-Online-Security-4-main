@@ -2193,7 +2193,7 @@
 .service-faq {
   position: relative;
 
-  padding: 90px 0 96px;
+  padding: 45px 0 48px;
 
   overflow: hidden;
 
@@ -2948,10 +2948,14 @@
   .service-scheme,
   .service-flow,
   .service-resources,
-  .service-faq,
   .service-contact {
     padding-top: 68px;
     padding-bottom: 72px;
+  }
+
+  .service-faq {
+    padding-top: 34px;
+    padding-bottom: 36px;
   }
 
   .service-intro__heading,
@@ -3226,10 +3230,14 @@
   .service-scheme,
   .service-flow,
   .service-resources,
-  .service-faq,
   .service-contact {
     padding-top: 58px;
     padding-bottom: 62px;
+  }
+
+  .service-faq {
+    padding-top: 29px;
+    padding-bottom: 31px;
   }
 
   .service-intro__title,
