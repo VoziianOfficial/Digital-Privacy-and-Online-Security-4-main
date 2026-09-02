@@ -2397,32 +2397,115 @@
 }
 
 .service-end__inner {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
+  gap: 42px;
+
+  min-height: 188px;
+  padding:
+    clamp(28px, 4vw, 48px)
+    clamp(30px, 5vw, 64px);
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+
+  background:
+    radial-gradient(
+      circle at 82% 34%,
+      rgba(119, 190, 255, 0.2),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.025) 42%,
+      rgba(78, 134, 238, 0.09)
+    ),
+    #07090c;
+
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.46),
+    0 12px 26px rgba(78, 134, 238, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+
+  transition:
+    transform 320ms var(--ease-main),
+    border-color 320ms var(--ease-main),
+    box-shadow 320ms var(--ease-main);
+}
+
+.service-end__inner::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.12),
+      transparent 26%,
+      transparent 72%,
+      rgba(119, 190, 255, 0.13)
+    );
+
+  opacity: 0.5;
+}
+
+.service-end__inner:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(119, 190, 255, 0.34);
+
+  box-shadow:
+    0 34px 82px rgba(0, 0, 0, 0.52),
+    0 18px 34px rgba(78, 134, 238, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .service-end__title {
+  position: relative;
+  z-index: 1;
+
   max-width: 930px;
 
   margin: 0;
 
   font-size:
-    clamp(2.8rem, 5vw, 5.2rem);
+    clamp(2.6rem, 5vw, 4.6rem);
 
   line-height: 1;
+  white-space: nowrap;
 }
 
 .service-end__mark {
+  position: relative;
+  z-index: 1;
+
   flex: 0 0 auto;
 
   width:
-    clamp(115px, 11vw, 160px);
+    clamp(96px, 9vw, 132px);
 
   aspect-ratio: 1;
 
   object-fit: contain;
+
+  filter:
+    drop-shadow(0 20px 26px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 22px rgba(119, 190, 255, 0.16));
 }
 
 
@@ -3395,12 +3478,17 @@
 
     gap: 34px;
 
+    min-height: 0;
+    padding: 34px 22px;
+
     text-align: center;
   }
 
   .service-end__title {
     font-size:
       clamp(2.4rem, 11vw, 3.6rem);
+
+    white-space: normal;
   }
 
   .service-end__mark {
