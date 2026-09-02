@@ -2211,18 +2211,61 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(24px, 4vw, 56px);
   align-items: stretch;
+
+  perspective: 1400px;
 }
 
 .home-contact__intro {
   position: sticky;
   top: calc(var(--header-height) + 34px);
 
-  display: flex;
+  display: block;
   min-height: 100%;
-  padding: clamp(30px, 4vw, 46px);
+
+  text-align: center;
+}
+
+.home-contact__flip {
+  position: relative;
+
+  min-height: 100%;
+
+  border-radius: 8px;
+
+  transform:
+    rotateY(0deg);
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 760ms var(--ease-main);
+}
+
+.home-contact__intro:hover .home-contact__flip {
+  transform:
+    rotateY(180deg);
+}
+
+.home-contact__intro-front,
+.home-contact__intro-back {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
 
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.home-contact__intro-front {
+  z-index: 2;
+
+  display: flex;
+  min-height: 100%;
+  padding: clamp(30px, 4vw, 46px);
 
   background:
     linear-gradient(
@@ -2238,7 +2281,37 @@
   flex-direction: column;
   justify-content: center;
 
-  text-align: center;
+  transform:
+    rotateY(0deg);
+}
+
+.home-contact__intro:hover .home-contact__intro-front,
+.home-contact__intro:hover .home-contact__intro-back {
+  border-color:
+    rgba(
+      119,
+      190,
+      255,
+      0.28
+    );
+
+  box-shadow:
+    0 30px 86px rgba(0, 0, 0, 0.36);
+}
+
+.home-contact__intro-back {
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 3, 4, 0.1),
+      rgba(2, 3, 4, 0.28)
+    ),
+    url("../images/services/security-workspace.webp") center / cover no-repeat;
+
+  transform:
+    rotateY(180deg);
 }
 
 .home-contact__title {
@@ -2296,10 +2369,13 @@
   margin-bottom: 6px;
 
   font-size: 1.65rem;
+  text-align: center;
 }
 
 .home-contact__form-copy {
   margin-bottom: 22px;
+
+  text-align: center;
 }
 
 .home-contact__form .form-grid {
@@ -2355,9 +2431,12 @@
 }
 
 .home-contact__form .btn {
+  width: max-content;
   min-height: 46px;
   padding:
     12px 20px;
+
+  justify-self: center;
 }
 
 
