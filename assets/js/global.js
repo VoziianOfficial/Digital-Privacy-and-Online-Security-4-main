@@ -120,6 +120,13 @@
     typeof window.AOS !== "undefined";
 
 
+  const canUseAOS = () =>
+    hasAOS() &&
+    Boolean(
+      document.querySelector("[data-aos]")
+    );
+
+
   const canUseLenis = () =>
     state.finePointer &&
     !state.coarsePointer;
@@ -1295,7 +1302,7 @@
 
 
   const initAOS = () => {
-    if (!hasAOS()) {
+    if (!canUseAOS()) {
       return;
     }
 
@@ -3452,7 +3459,7 @@
     }
 
 
-    if (hasAOS()) {
+    if (canUseAOS()) {
       try {
         window.AOS.refresh();
       } catch (_) {
