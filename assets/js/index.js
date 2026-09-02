@@ -1588,92 +1588,215 @@
 
 
   const initParallax = () => {
+    const section =
+      $(".home-parallax");
+
+    if (!section) return;
+
+
+    const layers =
+      $$(".home-parallax__image", section);
+
+    const items =
+      $$("[data-parallax-item]", section);
+
+
     if (
-      state.reducedMotion ||
-      !hasGSAP() ||
-      !hasScrollTrigger()
+      layers.length < 2 ||
+      !items.length
     ) {
       return;
     }
 
 
-    const section =
-      $(".home-parallax");
-
-    const image =
-      $(".home-parallax__media img");
+    const preloadImages =
+      new Map();
 
 
-    if (!section || !image) return;
+    items.forEach((item) => {
+      if (!item.dataset.parallaxImage) return;
+
+      const preload =
+        new Image();
+
+      preload.src =
+        item.dataset.parallaxImage;
+
+      preloadImages.set(
+        item.dataset.parallaxImage,
+        preload
+      );
+    });
 
 
-    window.gsap.fromTo(
-      image,
-      {
-        yPercent: -7
-      },
-      {
-        yPercent: 7,
+    let activeIndex =
+      Math.max(
+        items.findIndex((item) =>
+          item.classList.contains("is-active")
+        ),
+        0
+      );
 
-        ease: "none",
+    let visibleLayerIndex =
+      layers.findIndex((layer) =>
+        layer.classList.contains("is-visible")
+      );
 
-        scrollTrigger: {
-          trigger: section,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.85
+    if (visibleLayerIndex < 0) {
+      visibleLayerIndex = 0;
+      layers[0].classList.add("is-visible");
+    }
+
+    let pendingIndex =
+      activeIndex;
+
+
+    const setActiveItem = (nextIndex) => {
+      items.forEach((item, index) => {
+        const isActive =
+          index === nextIndex;
+
+        item.classList.toggle(
+          "is-active",
+          isActive
+        );
+
+        if (isActive) {
+          item.setAttribute(
+            "aria-current",
+            "true"
+          );
+        } else {
+          item.removeAttribute(
+            "aria-current"
+          );
         }
+      });
+    };
+
+
+    const crossfade = (
+      nextIndex,
+      nextImage
+    ) => {
+      if (
+        nextIndex === activeIndex ||
+        !items[nextIndex]
+      ) {
+        return;
       }
-    );
 
 
-    const title =
-      $(".home-parallax__title");
+      const hiddenLayerIndex =
+        visibleLayerIndex === 0 ? 1 : 0;
 
-    const side =
-      $(".home-parallax__side");
+      const visibleLayer =
+        layers[visibleLayerIndex];
+
+      const hiddenLayer =
+        layers[hiddenLayerIndex];
 
 
-    if (title) {
-      window.gsap.from(
-        title,
-        {
-          y: 55,
-          autoAlpha: 0,
+      hiddenLayer.src =
+        nextImage;
 
-          duration: 1,
+      hiddenLayer.style.objectPosition =
+        items[nextIndex].dataset.parallaxPosition ||
+        "center center";
 
-          ease: "power3.out",
+      hiddenLayer.classList.add("is-visible");
+      visibleLayer.classList.remove("is-visible");
 
-          scrollTrigger: {
-            trigger: title,
-            start: "top 85%",
+      visibleLayerIndex =
+        hiddenLayerIndex;
+
+      activeIndex =
+        nextIndex;
+
+      setActiveItem(activeIndex);
+    };
+
+
+    const activate = (nextIndex) => {
+      if (
+        nextIndex === activeIndex ||
+        !items[nextIndex]
+      ) {
+        return;
+      }
+
+
+      const nextImage =
+        items[nextIndex].dataset.parallaxImage;
+
+      if (!nextImage) return;
+
+      pendingIndex =
+        nextIndex;
+
+
+      const preloaded =
+        preloadImages.get(nextImage);
+
+      if (
+        preloaded &&
+        !preloaded.complete
+      ) {
+        preloaded.addEventListener(
+          "load",
+          () => {
+            if (pendingIndex === nextIndex) {
+              crossfade(
+                nextIndex,
+                nextImage
+              );
+            }
+          },
+          {
             once: true
+          }
+        );
+
+        return;
+      }
+
+
+      crossfade(
+        nextIndex,
+        nextImage
+      );
+    };
+
+
+    setActiveItem(activeIndex);
+
+    layers[visibleLayerIndex].style.objectPosition =
+      items[activeIndex].dataset.parallaxPosition ||
+      "center center";
+
+
+    items.forEach((item, index) => {
+      item.addEventListener(
+        "pointerenter",
+        () => {
+          if (!isDesktopHover()) return;
+
+          activate(index);
+        }
+      );
+
+      item.addEventListener(
+        "click",
+        (event) => {
+          if (isDesktopHover()) return;
+
+          if (index !== activeIndex) {
+            event.preventDefault();
+            activate(index);
           }
         }
       );
-    }
-
-
-    if (side) {
-      window.gsap.from(
-        side,
-        {
-          y: 35,
-          autoAlpha: 0,
-
-          duration: 0.85,
-
-          ease: "power3.out",
-
-          scrollTrigger: {
-            trigger: side,
-            start: "top 87%",
-            once: true
-          }
-        }
-      );
-    }
+    });
   };
 
 
@@ -2465,8 +2588,6 @@
 
     initServiceShowcaseReveal();
 
-    initParallax();
-
     initPrivacyScheme();
 
     initTestimonialsReveal();
@@ -2510,6 +2631,13 @@
 
 
     initServiceHoverRows();
+
+
+    
+
+
+
+    initParallax();
 
 
     
