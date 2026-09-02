@@ -1557,7 +1557,7 @@
 .testimonials-swiper {
   position: relative;
 
-  overflow: visible;
+  overflow: hidden;
 }
 
 .testimonials-swiper .swiper-wrapper {

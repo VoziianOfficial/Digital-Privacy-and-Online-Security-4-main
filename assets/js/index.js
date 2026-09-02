@@ -1903,15 +1903,19 @@
       new window.Swiper(
         element,
         {
-          slidesPerView: 1.08,
+          slidesPerView: 1,
 
           spaceBetween: 18,
 
-          centeredSlides: true,
+          centeredSlides: false,
 
           loop: true,
 
+          loopedSlides: count,
+
           loopAdditionalSlides: 2,
+
+          loopPreventsSliding: false,
 
           speed: 950,
 
@@ -1939,28 +1943,23 @@
               : undefined,
 
           breakpoints: {
-            560: {
-              slidesPerView: 1.22,
-              spaceBetween: 20
-            },
-
-            760: {
-              slidesPerView: 1.5,
+            640: {
+              slidesPerView: 2,
               spaceBetween: 24
             },
 
             1000: {
-              slidesPerView: 1.85,
+              slidesPerView: 2,
               spaceBetween: 28
             },
 
             1280: {
-              slidesPerView: 2.18,
+              slidesPerView: 2,
               spaceBetween: 34
             },
 
             1500: {
-              slidesPerView: 2.28,
+              slidesPerView: 2,
               spaceBetween: 38
             }
           }
