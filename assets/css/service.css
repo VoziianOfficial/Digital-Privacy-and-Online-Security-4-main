@@ -1415,7 +1415,7 @@
 .service-flow {
   position: relative;
 
-  padding: 94px 0 100px;
+  padding: 58px 0;
 
   overflow: hidden;
 
@@ -1423,20 +1423,32 @@
 }
 
 .service-flow__head {
-  max-width: 1050px;
+  position: relative;
+  z-index: 3;
 
-  margin-bottom: 55px;
+  max-width: 100%;
+
+  margin:
+    0 auto 54px;
+
+  text-align: center;
+}
+
+.service-flow__head .service-label {
+  justify-content: center;
 }
 
 .service-flow__title {
-  max-width: 820px;
+  max-width: 100%;
 
-  margin: 0;
+  margin:
+    0 auto;
 
   font-size:
-    clamp(3rem, 5vw, 5.3rem);
+    clamp(2.1rem, 3.25vw, 3.75rem);
 
   line-height: 1.02;
+  white-space: nowrap;
 }
 
 
@@ -1447,31 +1459,46 @@
 .service-flow__board {
   position: relative;
 
-  min-height: 380px;
+  min-height: min(540px, 74svh);
 
-  padding: 55px 48px;
+  padding:
+    68px clamp(28px, 5vw, 70px)
+    58px;
 
   border:
     1px solid var(--service-line);
 
-  background: #050607;
+  background:
+    linear-gradient(
+      rgba(2, 3, 4, 0.42),
+      rgba(2, 3, 4, 0.56)
+    ),
+    var(--service-flow-image, none)
+    center / cover no-repeat,
+    #050607;
 
   overflow: hidden;
 }
 
-.service-flow__line {
+.service-flow__board::before {
+  content: "";
+
   position: absolute;
-
-  top: 50%;
-  right: 9%;
-  left: 9%;
-
-  height: 1px;
+  inset: 0;
 
   background:
-    rgba(119, 190, 255, 0.48);
+    linear-gradient(
+      90deg,
+      rgba(119, 190, 255, 0.18),
+      rgba(119, 190, 255, 0.08) 44%,
+      rgba(2, 3, 4, 0.3)
+    );
 
-  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.service-flow__line {
+  display: none;
 }
 
 .service-flow__nodes {
@@ -1483,9 +1510,9 @@
   grid-template-columns:
     repeat(4, minmax(0, 1fr));
 
-  gap: 28px;
+  gap: 20px;
 
-  min-height: 270px;
+  min-height: 0;
 }
 
 .service-flow-node {
@@ -1496,9 +1523,42 @@
   align-items: center;
   justify-content: center;
 
+  min-height: 205px;
   min-width: 0;
 
+  padding:
+    68px 24px 34px;
+
+  border:
+    1px solid rgba(119, 190, 255, 0.18);
+
+  background:
+    rgba(49, 151, 242, 0.7);
+
+  backdrop-filter: blur(12px);
+
   text-align: center;
+
+  transition:
+    background 380ms ease,
+    border-color 380ms ease,
+    box-shadow 420ms ease,
+    transform 420ms var(--ease-main);
+}
+
+.service-flow-node:hover,
+.service-flow-node.is-active {
+  border-color:
+    rgba(255, 255, 255, 0.24);
+
+  background:
+    rgba(67, 170, 255, 0.82);
+
+  box-shadow:
+    0 24px 52px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  transform: translateY(-4px);
 }
 
 .service-flow-node__point {
@@ -1512,16 +1572,21 @@
   width: 82px;
   height: 82px;
 
-  margin-bottom: 25px;
+  margin:
+    -109px auto 28px;
 
   border:
-    1px solid var(--service-blue);
+    1px solid rgba(255, 255, 255, 0.12);
 
   border-radius: 50%;
 
-  background: #020304;
+  background:
+    var(--service-blue);
 
-  color: var(--service-blue);
+  color: #fff;
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.22);
 
   transition:
     background 350ms ease,
@@ -1533,10 +1598,10 @@
   content: "";
 
   position: absolute;
-  inset: 9px;
+  inset: 8px;
 
   border:
-    1px solid rgba(255, 255, 255, 0.1);
+    1px solid rgba(255, 255, 255, 0.2);
 
   border-radius: 50%;
 }
@@ -1553,19 +1618,21 @@
 .service-flow-node__point,
 .service-flow-node.is-active
 .service-flow-node__point {
-  background: var(--service-blue);
+  background: #fff;
 
-  color: #020304;
+  color: var(--service-blue);
 
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .service-flow-node__title {
-  max-width: 180px;
+  max-width: 220px;
 
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 
-  font-size: 1.22rem;
+  color: #fff;
+
+  font-size: 1.24rem;
 }
 
 .service-flow-node__text {
@@ -1573,10 +1640,10 @@
 
   margin: 0;
 
-  color: #9da0a7;
+  color: rgba(255, 255, 255, 0.88);
 
-  font-size: 0.83rem;
-  line-height: 1.45;
+  font-size: 0.86rem;
+  line-height: 1.58;
 }
 
 
@@ -2213,6 +2280,17 @@
     padding: 12px 12px 28px;
   }
 
+  .service-flow__board {
+    padding: 34px 30px;
+  }
+
+  .service-flow-node {
+    min-height: 215px;
+
+    padding:
+      66px 20px 28px;
+  }
+
   .service-contact__layout {
     gap: 58px;
   }
@@ -2286,8 +2364,7 @@
   }
 
   .service-flow__board {
-    padding:
-      50px 30px;
+    padding: 34px 30px;
   }
 
   .service-contact__layout {
@@ -2426,14 +2503,6 @@
 
 
   
-
-  .service-flow__board {
-    min-height: 440px;
-  }
-
-  .service-flow__nodes {
-    min-height: 330px;
-  }
 
   .service-flow-node__text {
     max-width: 160px;
@@ -2628,6 +2697,13 @@
       repeat(2, minmax(0, 1fr));
   }
 
+  .service-flow__title {
+    font-size:
+      clamp(1.85rem, 5.2vw, 3rem);
+
+    white-space: nowrap;
+  }
+
   .service-focus-card {
     min-height: 320px;
   }
@@ -2675,7 +2751,8 @@
   .service-flow__board {
     min-height: auto;
 
-    padding: 34px 28px;
+    padding:
+      56px 24px 34px;
   }
 
   .service-flow__line {
@@ -2692,9 +2769,13 @@
   .service-flow__nodes {
     grid-template-columns: 1fr 1fr;
 
-    gap: 42px 22px;
+    gap: 18px;
 
     min-height: auto;
+  }
+
+  .service-flow-node {
+    min-height: 210px;
   }
 
 
@@ -2846,6 +2927,13 @@
     text-align: center;
   }
 
+  .service-flow__title {
+    font-size:
+      clamp(1.3rem, 6.7vw, 2.2rem);
+
+    white-space: nowrap;
+  }
+
 
   
 
@@ -2990,7 +3078,12 @@
   
 
   .service-flow__board {
-    padding: 28px 20px;
+    padding:
+      38px 16px 24px;
+  }
+
+  .service-flow__head {
+    margin-bottom: 28px;
   }
 
   .service-flow__line {
@@ -3000,20 +3093,26 @@
   .service-flow__nodes {
     grid-template-columns: 1fr;
 
-    gap: 35px;
+    gap: 14px;
   }
 
   .service-flow-node {
-    padding-bottom: 26px;
+    min-height: auto;
 
-    border-bottom:
-      1px solid var(--service-line);
+    padding:
+      24px 18px 22px;
+  }
+
+  .service-flow-node__point {
+    width: 58px;
+    height: 58px;
+
+    margin:
+      0 auto 16px;
   }
 
   .service-flow-node:last-child {
-    padding-bottom: 0;
-
-    border-bottom: 0;
+    padding-bottom: 22px;
   }
 
 
@@ -3195,6 +3294,7 @@
   .service-focus-card__media img,
   .service-focus-card__meta,
   .service-resource-row__image,
+  .service-flow-node,
   .service-flow-node__point {
     transition: none !important;
   }
