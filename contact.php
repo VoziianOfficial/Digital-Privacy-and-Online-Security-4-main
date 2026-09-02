@@ -98,7 +98,7 @@ function getRecipientEmail(): ?string
     }
 
     $matched = preg_match(
-        '/\bemail\s*:\s*["\']([^"\']+)["\']/i',
+        '/(?:^|[,{]\s*)["\']?email["\']?\s*:\s*["\']([^"\']+)["\']/i',
         $configContents,
         $matches
     );
@@ -122,6 +122,87 @@ function getRecipientEmail(): ?string
     }
 
     return $email;
+}
+
+
+function stringStartsWith(string $value, string $prefix): bool
+{
+    return substr(
+        $value,
+        0,
+        strlen($prefix)
+    ) === $prefix;
+}
+
+
+function mimeEncodeHeaderUtf8(string $value): string
+{
+    $value = str_replace(
+        ["\r", "\n"],
+        ' ',
+        $value
+    );
+
+    $chunks = [];
+    $chunk = '';
+    $chunkBytes = 0;
+    $length = strlen($value);
+    $offset = 0;
+    $maxChunkBytes = 45;
+
+    while ($offset < $length) {
+        $byte = ord($value[$offset]);
+        $charBytes = 1;
+
+        if (($byte & 0x80) === 0x00) {
+            $charBytes = 1;
+        } elseif (($byte & 0xE0) === 0xC0) {
+            $charBytes = 2;
+        } elseif (($byte & 0xF0) === 0xE0) {
+            $charBytes = 3;
+        } elseif (($byte & 0xF8) === 0xF0) {
+            $charBytes = 4;
+        }
+
+        if ($offset + $charBytes > $length) {
+            $charBytes = 1;
+        }
+
+        $char = substr(
+            $value,
+            $offset,
+            $charBytes
+        );
+
+        if (
+            $chunk !== '' &&
+            $chunkBytes + $charBytes > $maxChunkBytes
+        ) {
+            $chunks[] = $chunk;
+            $chunk = '';
+            $chunkBytes = 0;
+        }
+
+        $chunk .= $char;
+        $chunkBytes += $charBytes;
+        $offset += $charBytes;
+    }
+
+    if ($chunk !== '') {
+        $chunks[] = $chunk;
+    }
+
+    foreach ($chunks as $index => $chunkValue) {
+        $chunks[$index] =
+            '=?UTF-8?B?' .
+            base64_encode($chunkValue) .
+            '?=';
+    }
+
+    return implode(
+        ' ',
+        $chunks
+    );
 }
 
 
@@ -451,7 +532,7 @@ function getSenderAddress(): string
 
 
     if (
-        str_starts_with(
+        stringStartsWith(
             $host,
             'www.'
         )
@@ -496,8 +577,10 @@ $senderEmail =
 
 
 $mailSubject =
-    'Website contact: ' .
-    $subject;
+    mimeEncodeHeaderUtf8(
+        'Website contact: ' .
+        $subject
+    );
 
 
 
