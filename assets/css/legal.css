@@ -1492,8 +1492,8 @@
 @media (max-width: 560px) {
 
   .legal-page {
-    --legal-section-gap: 64px;
-    --legal-content-gap: 32px;
+    --legal-section-gap: 32px;
+    --legal-content-gap: 24px;
   }
 
   .legal-content,

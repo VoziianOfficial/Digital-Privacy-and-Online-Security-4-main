@@ -28,7 +28,7 @@
   --home-line: rgba(255, 255, 255, 0.09);
   --home-line-strong: rgba(255, 255, 255, 0.15);
   --home-section-gap: 92px;
-  --home-section-gap-mobile: 68px;
+  --home-section-gap-mobile: 34px;
   --home-content-gap: 34px;
   --home-card-gap: 18px;
 
@@ -3690,11 +3690,24 @@
 
   .home-principles__grid {
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 16px;
   }
 
   .principle-card__media {
-    min-height: 260px;
+    min-height: 130px;
+
+    margin-bottom: 10px;
+  }
+
+  .principle-card__title {
+    margin-bottom: 2px;
+
+    font-size: 1.08rem;
+  }
+
+  .principle-card__text {
+    font-size: 0.8rem;
+    line-height: 1.35;
   }
 
   .principle-card__title,
@@ -3796,7 +3809,7 @@
   }
 
   .principle-card__media {
-    min-height: 230px;
+    min-height: 115px;
   }
 }
 
@@ -3998,7 +4011,7 @@
   .home-faq,
   .home-contact {
     padding:
-      62px
+      31px
       0;
   }
 
