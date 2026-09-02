@@ -932,6 +932,199 @@
 
 
 
+.home-billboard {
+  position: relative;
+
+  padding: 0 0 47px;
+
+  overflow: clip;
+
+  background: #020304;
+}
+
+.home-billboard__stage {
+  position: relative;
+
+  height: clamp(260px, 34vw, 420px);
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius-md);
+
+  background: #050607;
+
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(119, 190, 255, 0.08);
+
+  isolation: isolate;
+  perspective: 1100px;
+  transform: translateZ(0);
+}
+
+.home-billboard__stage::before,
+.home-billboard__stage::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+.home-billboard__stage::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 3, 4, 0.45),
+      rgba(2, 3, 4, 0.04) 28%,
+      rgba(2, 3, 4, 0.02) 62%,
+      rgba(2, 3, 4, 0.5)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0) 36%,
+      rgba(2, 3, 4, 0.28)
+    );
+
+  mix-blend-mode: normal;
+}
+
+.home-billboard__stage::after {
+  inset: 1px;
+
+  border-radius: calc(var(--radius-md) - 1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    inset 0 -1px 0 rgba(119, 190, 255, 0.08);
+}
+
+.home-billboard__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.home-billboard__image--base {
+  z-index: 1;
+}
+
+.home-billboard__image--next {
+  z-index: 0;
+
+  opacity: 0;
+}
+
+.home-billboard__slats {
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.home-billboard__slat {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--slat-index) * var(--slat-width));
+
+  width: calc(var(--slat-width) + 0.5px);
+
+  overflow: hidden;
+
+  background-image: var(--slat-image);
+  background-repeat: no-repeat;
+  background-position:
+    var(--slat-position)
+    center;
+  background-size:
+    calc(var(--slat-count) * 100%)
+    100%;
+
+  opacity: 0;
+
+  transform:
+    rotateY(-76deg)
+    translateX(-8px)
+    scaleX(0.84);
+  transform-origin: left center;
+
+  transition:
+    opacity 660ms var(--ease-main),
+    transform 960ms var(--ease-main),
+    filter 960ms var(--ease-main);
+  transition-delay:
+    calc(var(--slat-reverse) * 62ms);
+
+  filter: brightness(0.76) saturate(0.96);
+
+  will-change:
+    opacity,
+    transform,
+    filter;
+}
+
+.home-billboard__slat::before,
+.home-billboard__slat::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  pointer-events: none;
+}
+
+.home-billboard__slat::before {
+  left: 0;
+
+  background: rgba(119, 190, 255, 0.2);
+}
+
+.home-billboard__slat::after {
+  right: 0;
+
+  background: rgba(2, 3, 4, 0.62);
+}
+
+.home-billboard__stage.is-security .home-billboard__slat {
+  opacity: 1;
+
+  transform:
+    rotateY(0)
+    translateX(0)
+    scaleX(1);
+
+  transition-delay:
+    calc(var(--slat-index) * 62ms);
+
+  filter: brightness(1) saturate(1.04);
+}
+
+.home-billboard__stage:hover .home-billboard__slat {
+  filter: brightness(1.04) saturate(1.08);
+}
+
+
+
+
+
+
 .home-service-showcase {
   position: relative;
 
@@ -2480,6 +2673,10 @@
     margin-left: 45px;
   }
 
+  .home-billboard {
+    padding-bottom: 42px;
+  }
+
   .home-service-showcase__head {
     gap: 42px;
   }
@@ -2720,6 +2917,10 @@
     margin-left: 0;
   }
 
+  .home-billboard {
+    padding-bottom: 39px;
+  }
+
 
   
 
@@ -2930,6 +3131,10 @@
 
   .home-services__column:nth-child(2) {
     padding-top: 42px;
+  }
+
+  .home-billboard__stage {
+    height: clamp(245px, 43vw, 340px);
   }
 
 
@@ -3180,6 +3385,14 @@
     padding-top: 60px;
   }
 
+
+  .home-billboard {
+    padding-bottom: 34px;
+  }
+
+  .home-billboard__stage {
+    height: clamp(220px, 58vw, 280px);
+  }
 
   
 
@@ -3556,6 +3769,10 @@
   .home-parallax__zone:hover:not(.is-active) .home-parallax__marker {
     transform: none;
   }
+
+  .home-billboard__stage:hover .home-billboard__slat {
+    filter: brightness(1) saturate(1.04);
+  }
 }
 
 
@@ -3586,6 +3803,10 @@
   }
 
   .service-hover-row__image {
+    transition: none !important;
+  }
+
+  .home-billboard__slat {
     transition: none !important;
   }
 

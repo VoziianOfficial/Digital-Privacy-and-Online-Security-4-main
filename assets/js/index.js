@@ -30,6 +30,7 @@
       "(prefers-reduced-motion: reduce)"
     ).matches,
     swipers: [],
+    billboards: [],
     ribbonLoops: [],
     resizeTimer: null
   };
@@ -1051,6 +1052,121 @@
 
   
 
+
+
+  const initHomeBillboards = () => {
+    const billboards =
+      $$("[data-home-billboard]");
+
+    if (!billboards.length) return;
+
+    billboards.forEach((stage) => {
+      if (stage.dataset.billboardReady === "true") {
+        return;
+      }
+
+      const slatLayer =
+        $(".home-billboard__slats", stage);
+
+      const secondary =
+        stage.dataset.secondary;
+
+      if (!slatLayer || !secondary) {
+        return;
+      }
+
+      stage.dataset.billboardReady = "true";
+
+      const count =
+        window.matchMedia("(max-width: 560px)").matches
+          ? 12
+          : 16;
+
+      stage.style.setProperty(
+        "--slat-count",
+        count
+      );
+
+      stage.style.setProperty(
+        "--slat-width",
+        `${100 / count}%`
+      );
+
+      stage.style.setProperty(
+        "--slat-image",
+        `url("${new URL(
+          secondary,
+          window.location.href
+        ).href}")`
+      );
+
+      slatLayer.replaceChildren();
+
+      Array.from(
+        {
+          length: count
+        },
+        (_, index) => {
+          const slat =
+            document.createElement("span");
+
+          slat.className =
+            "home-billboard__slat";
+
+          slat.style.setProperty(
+            "--slat-index",
+            index
+          );
+
+          slat.style.setProperty(
+            "--slat-reverse",
+            count - index - 1
+          );
+
+          slat.style.setProperty(
+            "--slat-position",
+            `${(index / (count - 1)) * 100}%`
+          );
+
+          slatLayer.appendChild(slat);
+
+          return slat;
+        }
+      );
+
+      if (state.reducedMotion) {
+        return;
+      }
+
+      const toggle = () => {
+        stage.classList.toggle("is-security");
+      };
+
+      const startTimer =
+        window.setTimeout(() => {
+          toggle();
+
+          const interval =
+            window.setInterval(
+              toggle,
+              6200
+            );
+
+          state.billboards.push({
+            stage,
+            interval
+          });
+        }, 3200);
+
+      state.billboards.push({
+        stage,
+        startTimer
+      });
+    });
+  };
+
+
+  
 
 
   const initServiceCards = () => {
@@ -2629,6 +2745,11 @@
 
 
     initServiceHoverRows();
+
+
+    
+
+    initHomeBillboards();
 
 
     
