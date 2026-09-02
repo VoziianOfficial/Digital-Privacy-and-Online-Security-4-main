@@ -876,7 +876,7 @@
 .service-focus {
   position: relative;
 
-  padding: 92px 0 98px;
+  padding: 76px 0 82px;
 
   overflow: hidden;
 
@@ -894,7 +894,7 @@
 
   align-items: end;
 
-  margin-bottom: 52px;
+  margin-bottom: 42px;
 }
 
 .service-focus__title {
@@ -923,9 +923,9 @@
   display: grid;
 
   grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+    repeat(2, minmax(0, 1fr));
 
-  gap: 20px;
+  gap: 22px;
 
   align-items: start;
 }
@@ -936,9 +936,9 @@
   display: flex;
   flex-direction: column;
 
-  min-height: 365px;
+  min-height: 410px;
 
-  padding: 31px 28px;
+  padding: 12px 12px 26px;
 
   overflow: hidden;
 
@@ -947,79 +947,181 @@
 
   background: #050607;
 
+  box-shadow:
+    0 22px 65px rgba(0, 0, 0, 0.23);
+
   transition:
     transform 420ms var(--ease-main),
-    border-color 320ms ease;
+    border-color 320ms ease,
+    box-shadow 420ms ease,
+    background 420ms ease;
 }
 
 .service-focus-card:nth-child(even) {
-  margin-top: 62px;
+  margin-top: 0;
 }
 
 .service-focus-card:hover {
   border-color:
-    rgba(119, 190, 255, 0.48);
+    rgba(119, 190, 255, 0.42);
 
-  transform: translateY(-6px);
+  background: #080a0d;
+
+  box-shadow:
+    0 30px 86px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(119, 190, 255, 0.08);
+
+  transform: translateY(-5px);
 }
 
-.service-focus-card__icon {
+.service-focus-card__media {
   position: relative;
 
-  display: grid;
-  place-items: center;
+  aspect-ratio: 16 / 9;
 
-  width: 66px;
-  height: 66px;
+  min-height: 220px;
 
-  margin-bottom: auto;
+  overflow: hidden;
 
   border:
-    1px solid var(--service-line-strong);
+    1px solid rgba(255, 255, 255, 0.07);
 
-  border-radius: 50%;
-
-  color: var(--service-blue);
-
-  transition:
-    background 350ms ease,
-    color 350ms ease,
-    border-color 350ms ease,
-    transform 420ms var(--ease-main);
+  background: #11151b;
 }
 
-.service-focus-card__icon svg {
-  width: 27px;
-  height: 27px;
+.service-focus-card__media::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 3, 4, 0) 42%,
+      rgba(2, 3, 4, 0.34) 100%
+    );
+
+  pointer-events: none;
+}
+
+.service-focus-card__media img {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scale(1.01);
+
+  transition:
+    transform 780ms var(--ease-main),
+    filter 520ms ease;
 }
 
 .service-focus-card:hover
-.service-focus-card__icon {
-  border-color: var(--service-blue);
+.service-focus-card__media img {
+  filter:
+    saturate(1.08)
+    contrast(1.04);
 
-  background: var(--service-blue);
+  transform: scale(1.055);
+}
 
-  color: #020304;
+.service-focus-card__meta {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  z-index: 1;
 
-  transform: rotate(-7deg);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 15px 18px;
+
+  background:
+    rgba(5, 6, 7, 0.88);
+
+  color: #c5c9d0;
+
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  line-height: 1.2;
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    background 360ms ease,
+    color 360ms ease,
+    transform 420ms var(--ease-main);
+}
+
+.service-focus-card__meta span {
+  min-width: 0;
+}
+
+.service-focus-card__meta span:first-child {
+  color: var(--service-blue);
+}
+
+.service-focus-card__meta span:last-child {
+  text-align: right;
+}
+
+.service-focus-card:hover
+.service-focus-card__meta {
+  background:
+    rgba(5, 6, 7, 0.94);
+
+  color: #eef4fb;
+
+  transform: translateY(-3px);
 }
 
 .service-focus-card__body {
-  padding-top: 85px;
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap: 12px 24px;
+
+  padding:
+    22px 10px 0;
 }
 
 .service-focus-card__title {
-  max-width: 240px;
+  max-width: 360px;
 
-  margin-bottom: 14px;
+  margin: 0;
 
   font-size:
-    clamp(1.45rem, 2vw, 2rem);
+    clamp(1.5rem, 2.15vw, 2.35rem);
 
   line-height: 1.08;
 }
 
+.service-focus-card__tag {
+  align-self: start;
+
+  color: var(--service-blue);
+
+  font-family: var(--font-accent);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  text-align: right;
+}
+
 .service-focus-card__text {
+  grid-column: 1 / -1;
+
   margin: 0;
 
   color: #aaadb3;
@@ -2051,7 +2153,7 @@
   }
 
   .service-focus-card {
-    padding: 28px 24px;
+    padding: 12px 12px 28px;
   }
 
   .service-contact__layout {
@@ -2124,18 +2226,6 @@
       repeat(2, minmax(0, 1fr));
 
     gap: 20px;
-  }
-
-  .service-focus-card:nth-child(even) {
-    margin-top: 45px;
-  }
-
-  .service-focus-card:nth-child(3) {
-    margin-top: -10px;
-  }
-
-  .service-focus-card:nth-child(4) {
-    margin-top: 35px;
   }
 
   .service-flow__board {
@@ -2413,8 +2503,8 @@
   .service-resources,
   .service-faq,
   .service-contact {
-    padding-top: 76px;
-    padding-bottom: 80px;
+    padding-top: 68px;
+    padding-bottom: 72px;
   }
 
   .service-intro__heading,
@@ -2482,7 +2572,7 @@
   }
 
   .service-focus-card {
-    min-height: 330px;
+    min-height: 320px;
   }
 
 
@@ -2679,8 +2769,8 @@
   .service-resources,
   .service-faq,
   .service-contact {
-    padding-top: 66px;
-    padding-bottom: 70px;
+    padding-top: 58px;
+    padding-bottom: 62px;
   }
 
   .service-intro__title,
@@ -2774,30 +2864,36 @@
   .service-focus-card:nth-child(even),
   .service-focus-card:nth-child(3),
   .service-focus-card:nth-child(4) {
-    min-height: 280px;
+    min-height: auto;
 
     margin-top: 0;
   }
 
   .service-focus-card {
-    padding: 27px;
-
-    text-align: center;
+    padding: 12px 12px 26px;
   }
 
-  .service-focus-card__icon {
-    margin-right: auto;
-    margin-left: auto;
+  .service-focus-card__media {
+    min-height: 190px;
   }
 
   .service-focus-card__body {
-    padding-top: 50px;
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    padding:
+      24px 10px 0;
+  }
+
+  .service-focus-card__tag {
+    text-align: left;
   }
 
   .service-focus-card__title,
   .service-focus-card__text {
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0;
+    margin-left: 0;
   }
 
 
@@ -3005,6 +3101,13 @@
     transform: none;
   }
 
+  .service-focus-card:hover
+  .service-focus-card__media img,
+  .service-focus-card:hover
+  .service-focus-card__meta {
+    transform: none;
+  }
+
   .service-resource-row__image {
     display: none;
   }
@@ -3032,6 +3135,8 @@
   }
 
   .service-focus-card,
+  .service-focus-card__media img,
+  .service-focus-card__meta,
   .service-resource-row__image,
   .service-flow-node__point {
     transition: none !important;
