@@ -127,8 +127,6 @@ body {
   width: 100%;
   min-height: 100vh;
 
-  overflow-x: hidden;
-
   background: var(--color-black);
   color: var(--color-text);
 
@@ -655,6 +653,7 @@ blockquote {
 
   gap: 38px;
 
+  min-width: 0;
   min-height:
     var(--header-height);
 }
@@ -1698,7 +1697,7 @@ textarea.form-control {
     min(
       560px,
       calc(
-        100vw - 36px
+        100% - 36px
       )
     );
 

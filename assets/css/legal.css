@@ -1230,8 +1230,7 @@
   
 
   .legal-table-wrap {
-    width:
-      calc(100vw - 24px);
+    width: 100%;
 
     max-width: 100%;
   }
