@@ -1668,13 +1668,53 @@
 .service-parallax {
   position: relative;
 
-  min-height: 70svh;
+  padding:
+    48px 0 54px;
 
-  padding: 0;
+  overflow: clip;
+
+  background: #020304;
+}
+
+.service-parallax__stage {
+  position: relative;
+
+  min-height:
+    clamp(340px, 40vw, 500px);
 
   overflow: hidden;
 
-  background: #020304;
+  border:
+    1px solid rgba(255, 255, 255, 0.13);
+
+  border-radius: var(--radius-md);
+
+  background: #050607;
+
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(119, 190, 255, 0.08);
+
+  isolation: isolate;
+  perspective: 1100px;
+  transform: translateZ(0);
+}
+
+.service-parallax__stage::after {
+  content: "";
+
+  position: absolute;
+  inset: 1px;
+  z-index: 6;
+
+  border-radius:
+    calc(var(--radius-md) - 1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    inset 0 -1px 0 rgba(119, 190, 255, 0.08);
+
+  pointer-events: none;
 }
 
 .service-parallax__media {
@@ -1684,71 +1724,217 @@
   overflow: hidden;
 }
 
-.service-parallax__media img {
+.service-parallax__image {
   position: absolute;
-
-  top: -9%;
-  left: 0;
+  inset: 0;
 
   width: 100%;
-  height: 118%;
+  height: 100%;
 
   object-fit: cover;
+}
 
-  filter: brightness(0.4);
+.service-parallax__image--base {
+  z-index: 1;
 
-  will-change: transform;
+  filter:
+    brightness(0.72)
+    saturate(1.02);
+}
+
+.service-parallax__image--next {
+  z-index: 0;
+
+  opacity: 0;
+
+  filter:
+    brightness(0.78)
+    saturate(1.04);
+}
+
+.service-parallax__slats {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.service-parallax__slat {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--slat-index) * var(--slat-width));
+
+  width: calc(var(--slat-width) + 0.5px);
+
+  overflow: hidden;
+
+  background-image: var(--slat-image);
+  background-repeat: no-repeat;
+  background-position:
+    var(--slat-position)
+    center;
+  background-size:
+    calc(var(--slat-count) * 100%)
+    100%;
+
+  opacity: 0;
+
+  filter:
+    brightness(0.76)
+    saturate(0.96);
+
+  transform:
+    rotateY(-76deg)
+    translateX(-8px)
+    scaleX(0.84);
+
+  transform-origin: left center;
+
+  transition:
+    opacity 660ms var(--ease-main),
+    transform 960ms var(--ease-main),
+    filter 960ms var(--ease-main);
+  transition-delay:
+    calc(var(--slat-reverse) * 62ms);
+
+  will-change:
+    opacity,
+    transform,
+    filter;
+}
+
+.service-parallax__slat::before,
+.service-parallax__slat::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  pointer-events: none;
+}
+
+.service-parallax__slat::before {
+  left: 0;
+
+  background:
+    rgba(119, 190, 255, 0.2);
+}
+
+.service-parallax__slat::after {
+  right: 0;
+
+  background:
+    rgba(2, 3, 4, 0.62);
+}
+
+.service-parallax__stage.is-flipped
+.service-parallax__slat {
+  opacity: 1;
+
+  filter:
+    brightness(1)
+    saturate(1.04);
+
+  transform:
+    rotateY(0)
+    translateX(0)
+    scaleX(1);
+
+  transition-delay:
+    calc(var(--slat-index) * 62ms);
+}
+
+.service-parallax__stage:hover
+.service-parallax__slat {
+  filter:
+    brightness(1.04)
+    saturate(1.08);
 }
 
 .service-parallax__veil {
   position: absolute;
   inset: 0;
+  z-index: 4;
 
-  background: rgba(0, 0, 0, 0.34);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 3, 4, 0.68),
+      rgba(2, 3, 4, 0.38) 50%,
+      rgba(2, 3, 4, 0.68)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0) 36%,
+      rgba(2, 3, 4, 0.34)
+    );
 
   pointer-events: none;
 }
 
 .service-parallax > .container {
   position: relative;
-  z-index: 3;
-
-  display: flex;
-  align-items: center;
-
-  min-height: 70svh;
+  z-index: 1;
 }
 
 .service-parallax__content {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(250px, 360px);
+    minmax(0, 0.95fr)
+    minmax(250px, 0.58fr);
 
-  gap: 72px;
+  gap: clamp(28px, 5vw, 76px);
 
-  align-items: end;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
+
+  padding:
+    clamp(28px, 5vw, 58px);
 }
 
 .service-parallax__title {
-  max-width: 1020px;
+  max-width: 820px;
 
-  margin: 0;
+  margin:
+    0 0 0 auto;
 
   font-size:
-    clamp(3.4rem, 6.4vw, 7rem);
+    clamp(3rem, 5.6vw, 6.6rem);
 
   line-height: 0.96;
+
+  text-align: center;
+}
+
+.service-parallax__side {
+  max-width: 390px;
+
+  margin:
+    0 auto 0 0;
+
+  text-align: center;
 }
 
 .service-parallax__side p {
   margin-bottom: 27px;
 
   color:
-    rgba(255, 255, 255, 0.77);
+    rgba(255, 255, 255, 0.82);
 }
 
 
@@ -2531,6 +2717,11 @@
     gap: 28px;
   }
 
+  .service-parallax__title,
+  .service-parallax__side {
+    margin-inline: auto;
+  }
+
   .service-parallax__side {
     max-width: 500px;
   }
@@ -3132,12 +3323,19 @@
 
   
 
-  .service-parallax,
-  .service-parallax > .container {
-    min-height: 620px;
+  .service-parallax {
+    padding:
+      42px 0 46px;
+  }
+
+  .service-parallax__stage {
+    min-height: 440px;
   }
 
   .service-parallax__content {
+    padding:
+      34px 24px;
+
     text-align: center;
   }
 
@@ -3301,7 +3499,8 @@
 
   .service-hero__media img,
   .service-flow__bg,
-  .service-parallax__media img {
+  .service-parallax__image,
+  .service-parallax__slat {
     transform: none !important;
   }
 
@@ -3309,6 +3508,7 @@
   .service-focus-card__media img,
   .service-focus-card__meta,
   .service-resource-row__image,
+  .service-parallax__slat,
   .service-flow-node,
   .service-flow-node__point {
     transition: none !important;

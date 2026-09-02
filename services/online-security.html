@@ -271,7 +271,7 @@
 
       <a
         class="btn btn--small"
-        href="#service-contact"
+        href="../contact.php"
       >
         Get in touch
       </a>
@@ -1380,64 +1380,7 @@
 
   
 
-  <section class="service-parallax">
-
-
-    <div class="service-parallax__media">
-
-      <img
-        src="../assets/images/parallax/account-security.webp"
-        alt=""
-        loading="lazy"
-      >
-
-    </div>
-
-
-    <div
-      class="service-parallax__veil"
-      aria-hidden="true"
-    ></div>
-
-
-    <div class="container">
-
-      <div class="service-parallax__content">
-
-
-        <h2 class="service-parallax__title">
-          Make access
-          harder to steal.
-        </h2>
-
-
-        <div class="service-parallax__side">
-
-          <p>
-            Strong credentials matter, but resilient online
-            security also depends on authentication,
-            recovery and awareness of unusual activity.
-          </p>
-
-
-          <a
-            class="btn btn--blue"
-            href="#service-contact"
-          >
-            Ask about security
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
   
-
   <section class="service-resources">
 
     <div class="container">
@@ -1711,6 +1654,83 @@
 
 
   
+
+  <section class="service-parallax">
+
+    <div class="container">
+
+      <div
+        class="service-parallax__stage"
+        data-service-billboard
+        data-secondary="../assets/images/home/billboard-security.webp"
+      >
+
+        <div class="service-parallax__media">
+
+          <img
+            class="service-parallax__image service-parallax__image--base"
+            src="../assets/images/parallax/account-security.webp"
+            alt=""
+            loading="lazy"
+          >
+
+          <img
+            class="service-parallax__image service-parallax__image--next"
+            src="../assets/images/home/billboard-security.webp"
+            alt=""
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div
+          class="service-parallax__slats"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="service-parallax__veil"
+          aria-hidden="true"
+        ></div>
+
+
+        <div class="service-parallax__content">
+
+
+          <h2 class="service-parallax__title">
+            Make access
+            harder to steal.
+          </h2>
+
+
+          <div class="service-parallax__side">
+
+            <p>
+              Strong credentials matter, but resilient online
+              security also depends on authentication,
+              recovery and awareness of unusual activity.
+            </p>
+
+
+            <a
+              class="btn btn--blue"
+              href="../contact.php"
+            >
+              Ask about security
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 
   <section class="service-faq">
 
@@ -2078,216 +2098,6 @@
           </div>
 
         </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  
-
-  <section
-    id="service-contact"
-    class="service-contact"
-  >
-
-    <div class="container">
-
-      <div class="service-contact__layout">
-
-
-        <div class="service-contact__intro">
-
-          <div class="service-label">
-
-            <span
-              class="service-label__mark"
-              aria-hidden="true"
-            ></span>
-
-            Contact
-
-          </div>
-
-
-          <h2 class="service-contact__title">
-            Ask about
-            security.
-          </h2>
-
-
-          <p>
-            Have a question about the security information
-            available here? Send us a message and we will
-            reply by email.
-          </p>
-
-
-          <a
-            class="service-contact__email"
-            href="mailto:"
-            data-site-email
-          ></a>
-
-        </div>
-
-
-        <form
-          class="service-contact__form"
-          action="../contact.php"
-          method="post"
-          data-contact-form
-        >
-
-
-          <h3 class="service-contact__form-title">
-            Send a message
-          </h3>
-
-
-          <p class="service-contact__form-copy">
-            Tell us what you would like to ask.
-          </p>
-
-
-          <div class="form-grid">
-
-
-            <div class="form-group">
-
-              <label
-                class="form-label"
-                for="security-name"
-              >
-                Name
-              </label>
-
-              <input
-                class="form-control"
-                id="security-name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                placeholder="Your name"
-                maxlength="100"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label
-                class="form-label"
-                for="security-email"
-              >
-                Email
-              </label>
-
-              <input
-                class="form-control"
-                id="security-email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                placeholder="name@example.com"
-                maxlength="180"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group form-group--full">
-
-              <label
-                class="form-label"
-                for="security-subject"
-              >
-                Subject
-              </label>
-
-              <input
-                class="form-control"
-                id="security-subject"
-                name="subject"
-                type="text"
-                value="Online Security"
-                maxlength="160"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group form-group--full">
-
-              <label
-                class="form-label"
-                for="security-message"
-              >
-                Message
-              </label>
-
-              <textarea
-                class="form-control"
-                id="security-message"
-                name="message"
-                placeholder="Write your message..."
-                minlength="10"
-                maxlength="3000"
-                required
-              ></textarea>
-
-            </div>
-
-
-            
-
-            <div
-              hidden
-              aria-hidden="true"
-            >
-
-              <label for="security-website">
-                Website
-              </label>
-
-              <input
-                id="security-website"
-                name="website"
-                type="text"
-                tabindex="-1"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="form-group form-group--full">
-
-              <button
-                class="btn btn--blue"
-                type="submit"
-              >
-                Send message
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <div
-            class="form-status"
-            role="status"
-            aria-live="polite"
-          ></div>
-
-        </form>
 
       </div>
 

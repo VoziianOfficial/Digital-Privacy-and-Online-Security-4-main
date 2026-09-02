@@ -39,7 +39,9 @@
       "(hover: hover) and (pointer: fine)"
     ).matches,
 
-    resizeTimer: null
+    resizeTimer: null,
+
+    timers: []
   };
 
 
@@ -1726,13 +1728,160 @@
 
 
 
+  const initServiceBillboards = () => {
+    const stages =
+      $$("[data-service-billboard]");
+
+
+    if (!stages.length) {
+      return;
+    }
+
+
+    stages.forEach((stage) => {
+      if (
+        stage.dataset.billboardReady ===
+        "true"
+      ) {
+        return;
+      }
+
+
+      const slatLayer =
+        $(".service-parallax__slats", stage);
+
+
+      const secondary =
+        stage.dataset.secondary;
+
+
+      if (
+        !slatLayer ||
+        !secondary
+      ) {
+        return;
+      }
+
+
+      stage.dataset.billboardReady =
+        "true";
+
+
+      const count =
+        window.matchMedia(
+          "(max-width: 560px)"
+        ).matches
+          ? 12
+          : 16;
+
+
+      stage.style.setProperty(
+        "--slat-count",
+        count
+      );
+
+
+      stage.style.setProperty(
+        "--slat-width",
+        `${100 / count}%`
+      );
+
+
+      stage.style.setProperty(
+        "--slat-image",
+        `url("${new URL(
+          secondary,
+          window.location.href
+        ).href}")`
+      );
+
+
+      slatLayer.replaceChildren();
+
+
+      Array.from(
+        {
+          length: count
+        },
+        (_, index) => {
+          const slat =
+            document.createElement("span");
+
+
+          slat.className =
+            "service-parallax__slat";
+
+
+          slat.style.setProperty(
+            "--slat-index",
+            index
+          );
+
+
+          slat.style.setProperty(
+            "--slat-reverse",
+            count - index - 1
+          );
+
+
+          slat.style.setProperty(
+            "--slat-position",
+            `${(index / (count - 1)) * 100}%`
+          );
+
+
+          slatLayer.appendChild(slat);
+
+
+          return slat;
+        }
+      );
+
+
+      if (state.reducedMotion) {
+        return;
+      }
+
+
+      const toggle = () => {
+        stage.classList.toggle(
+          "is-flipped"
+        );
+      };
+
+
+      const startTimer =
+        window.setTimeout(() => {
+          toggle();
+
+
+          const interval =
+            window.setInterval(
+              toggle,
+              6200
+            );
+
+
+          state.timers.push(interval);
+        }, 3200);
+
+
+      state.timers.push(startTimer);
+    });
+  };
+
+
+  
+
+
+
   const initParallax = () => {
     const section =
       $(".service-parallax");
 
 
     const image =
-      $(".service-parallax__media img");
+      $(".service-parallax__image--base");
 
 
     if (
@@ -1749,23 +1898,21 @@
     window.gsap.fromTo(
       image,
       {
-        yPercent: -7
+        scale: 1.04
       },
       {
-        yPercent: 7,
+        scale: 1,
 
-        ease: "none",
+        ease:
+          "power2.out",
 
         scrollTrigger: {
           trigger: section,
 
           start:
-            "top bottom",
+            "top 82%",
 
-          end:
-            "bottom top",
-
-          scrub: 0.85
+          once: true
         }
       }
     );
@@ -2560,6 +2707,8 @@
     initFlowInteraction();
 
     initResourceRows();
+
+    initServiceBillboards();
 
 
     

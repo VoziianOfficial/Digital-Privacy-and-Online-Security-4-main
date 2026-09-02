@@ -282,7 +282,7 @@
 
       <a
         class="btn btn--small"
-        href="#service-contact"
+        href="../contact.php"
       >
         Get in touch
       </a>
@@ -1414,64 +1414,7 @@
 
   
 
-  <section class="service-parallax">
-
-
-    <div class="service-parallax__media">
-
-      <img
-        src="../assets/images/parallax/privacy-control.webp"
-        alt=""
-        loading="lazy"
-      >
-
-    </div>
-
-
-    <div
-      class="service-parallax__veil"
-      aria-hidden="true"
-    ></div>
-
-
-    <div class="container">
-
-      <div class="service-parallax__content">
-
-
-        <h2 class="service-parallax__title">
-          Share less
-          by default.
-        </h2>
-
-
-        <div class="service-parallax__side">
-
-          <p>
-            Personal information is easier to protect when
-            less of it is distributed across unnecessary
-            services, applications and public profiles.
-          </p>
-
-
-          <a
-            class="btn btn--blue"
-            href="#service-contact"
-          >
-            Ask about privacy
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
   
-
   <section class="service-resources">
 
     <div class="container">
@@ -1747,6 +1690,83 @@
 
 
   
+
+  <section class="service-parallax">
+
+    <div class="container">
+
+      <div
+        class="service-parallax__stage"
+        data-service-billboard
+        data-secondary="../assets/images/home/billboard-privacy.webp"
+      >
+
+        <div class="service-parallax__media">
+
+          <img
+            class="service-parallax__image service-parallax__image--base"
+            src="../assets/images/parallax/privacy-control.webp"
+            alt=""
+            loading="lazy"
+          >
+
+          <img
+            class="service-parallax__image service-parallax__image--next"
+            src="../assets/images/home/billboard-privacy.webp"
+            alt=""
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div
+          class="service-parallax__slats"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="service-parallax__veil"
+          aria-hidden="true"
+        ></div>
+
+
+        <div class="service-parallax__content">
+
+
+          <h2 class="service-parallax__title">
+            Share less
+            by default.
+          </h2>
+
+
+          <div class="service-parallax__side">
+
+            <p>
+              Personal information is easier to protect when
+              less of it is distributed across unnecessary
+              services, applications and public profiles.
+            </p>
+
+
+            <a
+              class="btn btn--blue"
+              href="../contact.php"
+            >
+              Ask about privacy
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 
   <section class="service-faq">
 
@@ -2121,224 +2141,6 @@
           </div>
 
         </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  
-
-  <section
-    id="service-contact"
-    class="service-contact"
-  >
-
-    <div class="container">
-
-      <div class="service-contact__layout">
-
-
-        <div class="service-contact__intro">
-
-
-          <div class="service-label">
-
-            <span
-              class="service-label__mark"
-              aria-hidden="true"
-            ></span>
-
-            Contact
-
-          </div>
-
-
-          <h2 class="service-contact__title">
-            Ask about
-            privacy.
-          </h2>
-
-
-          <p>
-            Have a question about the information available
-            on this website? Send us a message and we will
-            reply by email.
-          </p>
-
-
-          <a
-            class="service-contact__email"
-            href="mailto:"
-            data-site-email
-          ></a>
-
-        </div>
-
-
-        
-
-        <form
-          class="service-contact__form"
-          action="../contact.php"
-          method="post"
-          data-contact-form
-        >
-
-
-          <h3 class="service-contact__form-title">
-            Send a message
-          </h3>
-
-
-          <p class="service-contact__form-copy">
-            Tell us what you would like to ask.
-          </p>
-
-
-          <div class="form-grid">
-
-
-            <div class="form-group">
-
-              <label
-                class="form-label"
-                for="privacy-name"
-              >
-                Name
-              </label>
-
-
-              <input
-                class="form-control"
-                id="privacy-name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                placeholder="Your name"
-                maxlength="100"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label
-                class="form-label"
-                for="privacy-email"
-              >
-                Email
-              </label>
-
-
-              <input
-                class="form-control"
-                id="privacy-email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                placeholder="name@example.com"
-                maxlength="180"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group form-group--full">
-
-              <label
-                class="form-label"
-                for="privacy-subject"
-              >
-                Subject
-              </label>
-
-
-              <input
-                class="form-control"
-                id="privacy-subject"
-                name="subject"
-                type="text"
-                value="Privacy Protection"
-                maxlength="160"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group form-group--full">
-
-              <label
-                class="form-label"
-                for="privacy-message"
-              >
-                Message
-              </label>
-
-
-              <textarea
-                class="form-control"
-                id="privacy-message"
-                name="message"
-                placeholder="Write your message..."
-                minlength="10"
-                maxlength="3000"
-                required
-              ></textarea>
-
-            </div>
-
-
-            
-
-            <div
-              hidden
-              aria-hidden="true"
-            >
-
-              <label for="privacy-website">
-                Website
-              </label>
-
-
-              <input
-                id="privacy-website"
-                name="website"
-                type="text"
-                tabindex="-1"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="form-group form-group--full">
-
-              <button
-                class="btn btn--blue"
-                type="submit"
-              >
-                Send message
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <div
-            class="form-status"
-            role="status"
-            aria-live="polite"
-          ></div>
-
-        </form>
 
       </div>
 
