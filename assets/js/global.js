@@ -82,7 +82,13 @@
 
     refreshRunning: false,
 
-    scrollLockedByMenu: false
+    scrollLockReasons: new Set(),
+
+    lenisPausedByScrollLock: false,
+
+    mobileMenuInitialized: false,
+
+    linkNavigationInitialized: false
   };
 
 
@@ -138,6 +144,95 @@
     } catch (_) {
       return value;
     }
+  };
+
+
+  const syncScrollLock = () => {
+    const isLocked =
+      state.scrollLockReasons.size > 0;
+
+
+    document.documentElement.classList.toggle(
+      "scroll-locked",
+      isLocked
+    );
+
+
+    document.body.classList.toggle(
+      "scroll-locked",
+      isLocked
+    );
+
+
+    if (
+      state.lenis &&
+      typeof state.lenis.stop ===
+        "function" &&
+      typeof state.lenis.start ===
+        "function"
+    ) {
+      if (
+        isLocked &&
+        !state.lenisPausedByScrollLock
+      ) {
+        state.lenis.stop();
+
+        state.lenisPausedByScrollLock =
+          true;
+      } else if (
+        !isLocked &&
+        state.lenisPausedByScrollLock
+      ) {
+        state.lenis.start();
+
+        state.lenisPausedByScrollLock =
+          false;
+      }
+    } else if (!isLocked) {
+      state.lenisPausedByScrollLock =
+        false;
+    }
+  };
+
+
+  const lockScroll = (
+    reason
+  ) => {
+    if (!reason) {
+      return;
+    }
+
+
+    state.scrollLockReasons.add(
+      reason
+    );
+
+
+    syncScrollLock();
+  };
+
+
+  const unlockScroll = (
+    reason
+  ) => {
+    if (!reason) {
+      return;
+    }
+
+
+    state.scrollLockReasons.delete(
+      reason
+    );
+
+
+    syncScrollLock();
+  };
+
+
+  const clearScrollLocks = () => {
+    state.scrollLockReasons.clear();
+
+    syncScrollLock();
   };
 
 
@@ -1362,6 +1457,11 @@
 
 
   const initMobileMenu = () => {
+    if (state.mobileMenuInitialized) {
+      return;
+    }
+
+
     const toggle =
       $(".menu-toggle");
 
@@ -1376,6 +1476,10 @@
     ) {
       return;
     }
+
+
+    state.mobileMenuInitialized =
+      true;
 
 
     const open = () => {
@@ -1420,16 +1524,7 @@
       );
 
 
-      if (
-        state.lenis &&
-        typeof state.lenis.stop ===
-          "function"
-      ) {
-        state.lenis.stop();
-
-        state.scrollLockedByMenu =
-          true;
-      }
+      lockScroll("menu");
 
 
       window.dispatchEvent(
@@ -1440,10 +1535,11 @@
     };
 
 
-    const close = () => {
-      if (!state.menuOpen) {
-        return;
-      }
+    const close = (
+      options = {}
+    ) => {
+      const wasOpen =
+        state.menuOpen;
 
 
       state.menuOpen = false;
@@ -1483,22 +1579,31 @@
 
 
       if (
-        state.lenis &&
-        state.scrollLockedByMenu &&
-        typeof state.lenis.start ===
-          "function"
+        options.restoreFocus &&
+        wasOpen
       ) {
-        state.lenis.start();
-
-        state.scrollLockedByMenu =
-          false;
+        toggle.focus();
       }
 
 
-      window.dispatchEvent(
-        new CustomEvent(
-          "privora:menu-close"
-        )
+      unlockScroll("menu");
+
+
+      if (wasOpen) {
+        window.dispatchEvent(
+          new CustomEvent(
+            "privora:menu-close"
+          )
+        );
+      }
+    };
+
+
+    const forceClose = () => {
+      close(
+        {
+          restoreFocus: false
+        }
       );
     };
 
@@ -1559,9 +1664,11 @@
           event.key === "Escape" &&
           state.menuOpen
         ) {
-          close();
-
-          toggle.focus();
+          close(
+            {
+              restoreFocus: true
+            }
+          );
         }
       }
     );
@@ -1590,7 +1697,7 @@
 
     window.PrivoraMenu = {
       open,
-      close,
+      close: forceClose,
       toggle: toggleMenu
     };
   };
@@ -2255,6 +2362,9 @@
       );
 
 
+      unlockScroll("loader");
+
+
       state.loaderHidden =
         true;
 
@@ -2268,6 +2378,37 @@
 
       return;
     }
+
+
+    if (
+      loader.classList.contains(
+        "is-hidden"
+      )
+    ) {
+      document.body.classList.remove(
+        "is-loading"
+      );
+
+
+      unlockScroll("loader");
+
+
+      state.loaderHidden =
+        true;
+
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "privora:loader-hidden"
+        )
+      );
+
+
+      return;
+    }
+
+
+    lockScroll("loader");
 
 
     const started =
@@ -2305,6 +2446,9 @@
       document.body.classList.remove(
         "is-loading"
       );
+
+
+      unlockScroll("loader");
 
 
       window.dispatchEvent(
@@ -2430,6 +2574,14 @@
       true;
 
 
+    if (
+      state.menuOpen &&
+      window.PrivoraMenu
+    ) {
+      window.PrivoraMenu.close();
+    }
+
+
     const panel =
       $(
         ".page-transition__panel"
@@ -2452,13 +2604,7 @@
     }
 
 
-    if (
-      state.lenis &&
-      typeof state.lenis.stop ===
-        "function"
-    ) {
-      state.lenis.stop();
-    }
+    lockScroll("transition");
 
 
     window.gsap.killTweensOf(
@@ -2501,6 +2647,10 @@
       () => {
         state.navigationLocked =
           false;
+
+        unlockScroll(
+          "transition"
+        );
       },
       2200
     );
@@ -2628,6 +2778,15 @@
 
 
   const initLinkNavigation = () => {
+    if (state.linkNavigationInitialized) {
+      return;
+    }
+
+
+    state.linkNavigationInitialized =
+      true;
+
+
     document.addEventListener(
       "click",
       (event) => {
@@ -2644,7 +2803,9 @@
 
 
         const link =
-          event.target.closest("a");
+          event.target instanceof Element
+            ? event.target.closest("a")
+            : null;
 
 
         if (!link) {
@@ -2662,7 +2823,8 @@
 
 
         if (
-          link.target === "_blank" ||
+          link.target.toLowerCase() ===
+            "_blank" ||
           link.hasAttribute(
             "download"
           )
@@ -2677,10 +2839,20 @@
           );
 
 
+        const normalizedHref =
+          href
+            ? href.trim()
+            : "";
+
+
+        const lowerHref =
+          normalizedHref.toLowerCase();
+
+
         if (
-          !href ||
-          href === "#" ||
-          href.startsWith(
+          !normalizedHref ||
+          normalizedHref === "#" ||
+          lowerHref.startsWith(
             "javascript:"
           )
         ) {
@@ -2689,8 +2861,11 @@
 
 
         if (
-          href.startsWith(
+          lowerHref.startsWith(
             "mailto:"
+          ) ||
+          lowerHref.startsWith(
+            "tel:"
           )
         ) {
           return;
@@ -3701,13 +3876,7 @@
         );
 
 
-        if (
-          state.lenis &&
-          typeof state.lenis.start ===
-            "function"
-        ) {
-          state.lenis.start();
-        }
+        clearScrollLocks();
 
 
         window.setTimeout(

@@ -141,8 +141,8 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-body.is-loading,
-body.menu-open {
+html.scroll-locked,
+body.scroll-locked {
   overflow: hidden;
 }
 
