@@ -88,6 +88,8 @@
 
     mobileMenuInitialized: false,
 
+    serviceDropdownsInitialized: false,
+
     linkNavigationInitialized: false
   };
 
@@ -1700,6 +1702,248 @@
       close: forceClose,
       toggle: toggleMenu
     };
+  };
+
+
+  
+
+
+
+  const initServiceDropdowns = () => {
+    if (state.serviceDropdownsInitialized) {
+      return;
+    }
+
+
+    const dropdowns =
+      $$("[data-service-dropdown]");
+
+
+    if (!dropdowns.length) {
+      return;
+    }
+
+
+    state.serviceDropdownsInitialized =
+      true;
+
+
+    let closeTimer = null;
+
+
+    const clearCloseTimer = () => {
+      if (!closeTimer) {
+        return;
+      }
+
+
+      window.clearTimeout(closeTimer);
+
+      closeTimer = null;
+    };
+
+
+    const closeDropdown = (
+      dropdown
+    ) => {
+      const toggle =
+        $(
+          "[data-service-dropdown-toggle]",
+          dropdown
+        );
+
+
+      dropdown.classList.remove(
+        "is-open"
+      );
+
+
+      if (toggle) {
+        toggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+      }
+    };
+
+
+    const closeAll = (
+      except = null
+    ) => {
+      dropdowns.forEach(
+        (dropdown) => {
+          if (dropdown !== except) {
+            closeDropdown(dropdown);
+          }
+        }
+      );
+    };
+
+
+    const openDropdown = (
+      dropdown
+    ) => {
+      const toggle =
+        $(
+          "[data-service-dropdown-toggle]",
+          dropdown
+        );
+
+
+      clearCloseTimer();
+
+      closeAll(dropdown);
+
+      dropdown.classList.add(
+        "is-open"
+      );
+
+
+      if (toggle) {
+        toggle.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+      }
+    };
+
+
+    const scheduleClose = (
+      dropdown
+    ) => {
+      clearCloseTimer();
+
+      closeTimer =
+        window.setTimeout(
+          () => closeDropdown(dropdown),
+          420
+        );
+    };
+
+
+    dropdowns.forEach(
+      (dropdown) => {
+        const toggle =
+          $(
+            "[data-service-dropdown-toggle]",
+            dropdown
+          );
+
+
+        if (!toggle) {
+          return;
+        }
+
+
+        toggle.addEventListener(
+          "click",
+          () => {
+            if (
+              dropdown.classList.contains(
+                "is-open"
+              )
+            ) {
+              closeDropdown(dropdown);
+            } else {
+              openDropdown(dropdown);
+            }
+          }
+        );
+
+
+        dropdown.addEventListener(
+          "mouseenter",
+          () => openDropdown(dropdown)
+        );
+
+
+        dropdown.addEventListener(
+          "mouseleave",
+          () => scheduleClose(dropdown)
+        );
+
+
+        dropdown.addEventListener(
+          "focusin",
+          () => openDropdown(dropdown)
+        );
+
+
+        dropdown.addEventListener(
+          "focusout",
+          (event) => {
+            const nextTarget =
+              event.relatedTarget;
+
+
+            if (
+              nextTarget instanceof Node &&
+              dropdown.contains(nextTarget)
+            ) {
+              return;
+            }
+
+
+            scheduleClose(dropdown);
+          }
+        );
+
+
+        toggle.addEventListener(
+          "keydown",
+          (event) => {
+            if (
+              event.key === "ArrowDown" ||
+              event.key === "Enter" ||
+              event.key === " "
+            ) {
+              event.preventDefault();
+
+              openDropdown(dropdown);
+
+              const firstLink =
+                $(".site-nav__dropdown-link", dropdown);
+
+              if (firstLink) {
+                firstLink.focus();
+              }
+            }
+          }
+        );
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      (event) => {
+        const target =
+          event.target;
+
+
+        if (
+          target instanceof Node &&
+          dropdowns.some(
+            (dropdown) => dropdown.contains(target)
+          )
+        ) {
+          return;
+        }
+
+
+        closeAll();
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape") {
+          closeAll();
+        }
+      }
+    );
   };
 
 
@@ -3967,6 +4211,8 @@
     initHeader();
 
     initMobileMenu();
+
+    initServiceDropdowns();
 
     initAccordions();
 

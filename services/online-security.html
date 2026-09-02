@@ -205,13 +205,46 @@
           </a>
         </li>
 
-        <li>
-          <a
-            class="site-nav__link is-active"
-            href="#service-overview"
+        <li
+          class="site-nav__item site-nav__item--dropdown"
+          data-service-dropdown
+        >
+          <button
+            class="site-nav__link site-nav__dropdown-toggle is-active"
+            type="button"
+            aria-expanded="false"
+            aria-haspopup="true"
+            data-service-dropdown-toggle
           >
             Services
-          </a>
+            <span
+              class="site-nav__dropdown-caret"
+              aria-hidden="true"
+            ></span>
+          </button>
+
+          <div
+            class="site-nav__dropdown"
+            data-service-dropdown-menu
+          >
+            <a
+              class="site-nav__dropdown-link"
+              href="privacy-protection.html"
+              data-service-link="0"
+            >
+              <span>Privacy Protection</span>
+              <small>Data exposure, permissions and profile privacy</small>
+            </a>
+
+            <a
+              class="site-nav__dropdown-link is-active"
+              href="online-security.html"
+              data-service-link="1"
+            >
+              <span>Online Security</span>
+              <small>Account access, safer browsing and device checks</small>
+            </a>
+          </div>
         </li>
 
         <li>
