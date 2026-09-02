@@ -105,7 +105,7 @@
 .home-hero {
   position: relative;
 
-  min-height: calc(100svh - var(--header-height));
+  min-height: calc(70svh - var(--header-height));
 
   overflow: hidden;
 
@@ -117,7 +117,7 @@
 .home-hero > .container {
   position: relative;
 
-  min-height: calc(100svh - var(--header-height));
+  min-height: calc(70svh - var(--header-height));
 }
 
 
@@ -173,7 +173,7 @@
   position: relative;
   z-index: 2;
 
-  min-height: calc(100svh - var(--header-height));
+  min-height: calc(70svh - var(--header-height));
 
   overflow: hidden;
 }
@@ -2092,12 +2092,12 @@
 @media (max-width: 1100px) {
 
   .home-hero {
-    min-height: 760px;
+    min-height: 560px;
   }
 
   .home-hero > .container,
   .home-hero__stage {
-    min-height: 760px;
+    min-height: 560px;
   }
 
   .home-hero__object {
@@ -2177,12 +2177,12 @@
 @media (max-width: 900px) {
 
   .home-hero {
-    min-height: 720px;
+    min-height: 520px;
   }
 
   .home-hero > .container,
   .home-hero__stage {
-    min-height: 720px;
+    min-height: 520px;
   }
 
   .home-hero__grid-line:nth-child(2) {
@@ -2380,12 +2380,12 @@
 @media (max-width: 720px) {
 
   .home-hero {
-    min-height: 700px;
+    min-height: 500px;
   }
 
   .home-hero > .container,
   .home-hero__stage {
-    min-height: 700px;
+    min-height: 500px;
   }
 
   .home-hero__object {
@@ -2590,12 +2590,12 @@
 @media (max-width: 560px) {
 
   .home-hero {
-    min-height: 650px;
+    min-height: 460px;
   }
 
   .home-hero > .container,
   .home-hero__stage {
-    min-height: 650px;
+    min-height: 460px;
   }
 
   .home-hero__grid-line:nth-child(2) {
@@ -3014,12 +3014,12 @@
 @media (max-width: 390px) {
 
   .home-hero {
-    min-height: 610px;
+    min-height: 430px;
   }
 
   .home-hero > .container,
   .home-hero__stage {
-    min-height: 610px;
+    min-height: 430px;
   }
 
   .home-hero__object {

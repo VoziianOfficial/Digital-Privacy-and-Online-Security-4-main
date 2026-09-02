@@ -113,7 +113,7 @@
   position: relative;
 
   min-height:
-    calc(100svh - var(--header-height));
+    calc(70svh - var(--header-height));
 
   overflow: hidden;
 
@@ -127,7 +127,7 @@
   position: relative;
 
   min-height:
-    calc(100svh - var(--header-height));
+    calc(70svh - var(--header-height));
 }
 
 
@@ -185,7 +185,7 @@
   z-index: 2;
 
   min-height:
-    calc(100svh - var(--header-height));
+    calc(70svh - var(--header-height));
 }
 
 
@@ -2041,12 +2041,12 @@
 @media (max-width: 1080px) {
 
   .service-hero {
-    min-height: 780px;
+    min-height: 570px;
   }
 
   .service-hero > .container,
   .service-hero__stage {
-    min-height: 780px;
+    min-height: 570px;
   }
 
   .service-hero__intro {
@@ -2130,12 +2130,12 @@
   
 
   .service-hero {
-    min-height: 740px;
+    min-height: 530px;
   }
 
   .service-hero > .container,
   .service-hero__stage {
-    min-height: 740px;
+    min-height: 530px;
   }
 
   .service-hero__grid-line:nth-child(2) {
@@ -2291,12 +2291,12 @@
   
 
   .service-hero {
-    min-height: 700px;
+    min-height: 500px;
   }
 
   .service-hero > .container,
   .service-hero__stage {
-    min-height: 700px;
+    min-height: 500px;
   }
 
   .service-hero__intro {
@@ -2535,12 +2535,12 @@
   
 
   .service-hero {
-    min-height: 660px;
+    min-height: 460px;
   }
 
   .service-hero > .container,
   .service-hero__stage {
-    min-height: 660px;
+    min-height: 460px;
   }
 
   .service-hero__grid-line:nth-child(2) {
@@ -2882,12 +2882,12 @@
 @media (max-width: 390px) {
 
   .service-hero {
-    min-height: 620px;
+    min-height: 430px;
   }
 
   .service-hero > .container,
   .service-hero__stage {
-    min-height: 620px;
+    min-height: 430px;
   }
 
   .service-hero__intro {
