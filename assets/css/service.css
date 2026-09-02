@@ -696,14 +696,49 @@
 
   gap: 84px;
 
-  align-items: start;
+  align-items: stretch;
 }
 
-.service-overview__intro {
+.service-overview__media {
   position: sticky;
 
   top:
     calc(var(--header-height) + 34px);
+
+  min-height: 100%;
+
+  overflow: hidden;
+
+  background: #101215;
+
+  border:
+    1px solid var(--service-line);
+
+  border-radius: 8px;
+}
+
+.service-overview__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transform: scale(1.035);
+
+  transition:
+    opacity 420ms ease,
+    transform 760ms var(--ease-main);
+}
+
+.service-overview__image.is-active {
+  opacity: 1;
+
+  transform: scale(1);
 }
 
 .service-overview__title {
@@ -716,15 +751,6 @@
 
   line-height: 1.02;
 }
-
-.service-overview__intro p {
-  max-width: 440px;
-}
-
-
-
-
-
 
 .service-overview__list {
   border-top:
@@ -2204,13 +2230,19 @@
     gap: 46px;
   }
 
-  .service-overview__intro,
+  .service-overview__media,
   .service-contact__intro {
     position: relative;
 
     top: auto;
 
     max-width: 720px;
+  }
+
+  .service-overview__media {
+    width: 100%;
+    height: clamp(360px, 56vw, 520px);
+    min-height: 0;
   }
 
   .service-intro__heading {
@@ -2386,7 +2418,6 @@
   }
 
   .service-intro__heading,
-  .service-overview__intro,
   .service-focus__head,
   .service-scheme__head,
   .service-flow__head,
@@ -2401,7 +2432,6 @@
   }
 
   .service-intro__heading p,
-  .service-overview__intro p,
   .service-focus__copy,
   .service-scheme__copy,
   .service-resources__copy,

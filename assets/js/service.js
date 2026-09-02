@@ -1094,13 +1094,30 @@
 
 
 
+    const images =
+      $$(
+        ".service-overview__image",
+        section
+      );
+
+
     const activate = (
       selected
     ) => {
+      const selectedIndex =
+        rows.indexOf(selected);
+
       rows.forEach((row) => {
         row.classList.toggle(
           "is-active",
           row === selected
+        );
+      });
+
+      images.forEach((image, index) => {
+        image.classList.toggle(
+          "is-active",
+          index === selectedIndex
         );
       });
     };
@@ -1148,18 +1165,18 @@
     }
 
 
-    const intro =
-      $(".service-overview__intro", section);
+    const media =
+      $(".service-overview__media", section);
 
 
     if (
-      intro &&
+      media &&
       !hasAOSAttribute(
-        intro
+        media
       )
     ) {
       window.gsap.from(
-        intro,
+        media,
         {
           x: -35,
 
@@ -1171,7 +1188,7 @@
             "power3.out",
 
           scrollTrigger: {
-            trigger: intro,
+            trigger: media,
 
             start:
               "top 84%",
